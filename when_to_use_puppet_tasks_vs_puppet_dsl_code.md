@@ -18,8 +18,8 @@ In this document we, the Puppet Professional Services organization, will present
 
 ### Preferred Option
 
-The following is targeted towards tasks shipping in Puppet Enterprise, not
-remote [bolt](https://puppet.com/products/puppet-bolt) tasks. This is due to
+**The following is targeted towards tasks shipping in Puppet Enterprise, not
+remote [bolt](https://puppet.com/products/puppet-bolt) CLI tasks.** This is due to
 the inherent complexity of boot-strapping dependencies without a configuration
 management platform installed. 
 
@@ -27,7 +27,7 @@ management platform installed.
 
 * Tasks should use `puppet resource` and `facter` as much as possible to minimize reimplementation of  platform independent logic.
 
-* Tasks should not install their own prerequisites, puppet code should written for dependencies (e.g. `gem`, `pip` ).
+* Tasks should not install their own prerequisites, puppet code should be written for dependencies (e.g. `gem`, `pip` ). Tasks should focus on execution of just the action desired. Pre-requisites should be considered long term state and thus managed with puppet code.
 
 * Tasks should be parametrized rather then have hard-coded values in them.
 
@@ -38,11 +38,11 @@ management platform installed.
   exist that will increase the capabilities and minimize the code compared to
   simpler languages on the platform ( e.g. `ruby` or `python` ).
 
-* Tasks may use a platform specific language that is the most familiar to broadest user group in your environment. 
+* Tasks may use a platform specific language that is the most familiar to broadest user group in your organization. 
 
-* Tasks may use puppets ruby stack when users are agnostic about the language. 
+* Tasks may use puppets ruby stack when users are agnostic about the language. Puppet ruby is a known common denominator and reduces the need for management of ruby as a pre-requisite.
   
-* Tasks may use `puppet apply` as the [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) or in a [HERE doc](http://tldp.org/LDP/abs/html/here-docs.html) when site specific parameters must be passed as environmental variables. 
+* Tasks may be written in the puppet language when no parameters are required; If parameters are required they must be **TBD from tech discuss conversation**
 
 ### Discouraged Options
 
@@ -51,16 +51,13 @@ management platform installed.
   example would changing a configuration file, stopping a service, then
   reverting the configuration change after restarting a service.
 
-* Tasks shall not manage a state that is already managed by puppet code on
+* Tasks should not manage a state that is already managed by puppet code on
   the system. 
-	* Exceptions would be if puppet runs are incorporated into the task plan and puppet is expected to undo an ad-hoc configuration change as part of the automation timeline (e.g. starting a service after a db migration).
+	* Exceptions would be if puppet runs are incorporated into the task plan(Not yet a feature in PE tasks) and puppet is expected to undo an ad-hoc configuration change as part of the automation timeline (e.g. starting a service after a db migration).
 
-* Tasks shall not implement their own logging framework or host filtering
-  logic.
-
-* Tasks shall not download additional non-version controlled code and execute
-  it. The obvious exception is the PE Installer if tasks are used for bootstrapping new masters. 
-	* A related best practice is that where possible apps should be available via package management
+* Tasks should not reimplement existing functionality of puppet or the puppet tasks framework. Feedback from the task shall always make it's way back to the Puppet Enterprise console. Ex. Don't implement a different logging framework or host filtering logic within a task rather than using PQL.
+	
+* When downloading scripts or other content, the URL or source should specify a version. E.g. Source it from a tag rather than a branch. This will ensure you get the expected result when the task is run.
 
 * Tasks shall not execute multiple `puppet apply` commands in a single task.
   Plans should be created with multiple tasks or `puppet resource` should be
