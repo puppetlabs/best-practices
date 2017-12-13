@@ -161,6 +161,11 @@ implementation and validation of Puppet code. This can include, but are not
 limited to, general purpose scripts used in concert with the repository,
 automated testing, and documentation.
 
+## Feedback / Ideas for Improvement
+
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
+
 ## Additional Reading
 
 For foundational technical information, please see the documents linked below.

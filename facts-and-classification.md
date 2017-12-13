@@ -16,7 +16,7 @@ This standard applies to any customer that uses rules within Node Groups of the 
 
 All customers using the Node Classifier and using rules should use variables from the trusted facts array (`$trusted`). These facts are included in the node's certificate or generated on the master and, as such, cannot be changed on the node.
 
-Inserted information into the node's certificate is done at agent installation time. The Certificate Extensions are part of the PKI Certificate standard (X.509) and are well understood. Puppet has a range of extensions allocated, with names, that can be easily used by customers, such as `pp_role`, `pp_region`, `pp_datacenter`, and `pp_apptier`. Further information on certificate extensions can be found at https://puppet.com/docs/puppet/latest/ssl_attributes_extensions.html
+Inserting information into the node's certificate is done at agent installation time as X.509v3 Certificate Extensions, which are part of the PKI Certificate standard (X.509) and are well understood. Puppet has a range of extensions allocated, with names, that can be easily used by customers, such as `pp_role`, `pp_region`, `pp_datacenter`, and `pp_apptier`. Further information on certificate extensions can be found at https://puppet.com/docs/puppet/latest/ssl_attributes_extensions.html
 
 ### Discouraged Options
 
@@ -25,7 +25,7 @@ Using facts from the standard facts array ($facts) is discouraged as these varia
 ## Feedback / Ideas for Improvement
 
 * Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
-* Feedback can be provided to Puppet CS.
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Information
 

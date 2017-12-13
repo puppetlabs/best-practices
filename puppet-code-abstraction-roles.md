@@ -100,9 +100,10 @@ of each Role may need to change to accommodate for multiple tenancy.
 * Roles shall not contain resources - only declarations of Profiles and conditional
   logic.
 
-
 ## Feedback / Ideas for Improvement
 
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Information
 

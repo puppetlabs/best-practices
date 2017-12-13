@@ -99,21 +99,7 @@ of each Profile may need to change to accommodate for multiple tenancy.
 ## Feedback / Ideas for Improvement
 
 * Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
-
-* Standards related to data should not be listed here (e.g. When to enter data
-  into a profile versus Hiera) because they are specific to dealing with
-  Configuration Data (regardless of whether it affects a Profile or not)
-
-* I wanted to include something about when it is relevant to have a `profile::base`
-  versus having a company-specific module with a base class for each resource
-  type (e.g. `mycorp::rhel::packages`, `mycorp::rhel::repos). The gist is that
-  there needs to be a "catch-all" class for resources like packages that are
-  too small to have their own module but still need to be enforced.  That way,
-  if, eventually, a package that is in this "catch-all" class might conflict
-  with a package from a module, you can then pull it out of the "catch-all"
-  class and then use the one in the module.  It is a promotion workflow of
-  "where do I put this?", but I dunno the best way to write a standard for
-  that.
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Information
 

@@ -47,38 +47,7 @@ In standard Puppet workflows `%{environment}` is NOT a reliable indicator of wha
 
 If a Hiera hierarchy contains `%{environment}`, canary nodes being tested against a temporary Puppet environment will effectively lose access to data pertaining to them in their deployment environment. The specific effect of this happening will vary depending on what other data the node has available to fall back to in other tiers of the hierarchy, but it will be in general unexpected and undesirable.
 
-## Preferred Option
-
-A custom fact called `deployment_tier` MAY be implemented which reflects which deployment tier (Dev, Test, Prod) a node belongs to.
-
-The custom fact may be defined as a trusted fact before install, or defined via an external fact pre or post-install.
-
-If a Hiera hierarchy level is needed pertaining to deployment tier, the `%{deployment_tier}` value MAY be used in defining the hierarchy level(s). The `%{environment}` value SHOULD NOT be used in the definition of a Hiera hierarchy level.
-
-Configuration of the Hiera hierarchy should not be confused with configuration of the Hiera datadir. `%{environment}` can and should be used to configure the Hiera datadir. This is already [the default datadir configuration](https://docs.puppet.com/hiera/3.2/configuring.html#default-config-values).
-
-## Alternate Options
-
-Users may prefer to use a custom fact named something other than deployment_tier. This name is preferred as it does not re-use the term "environment", is generic, yet is indicative of the low-level workflow it pertains to.
-
-The exact name has no impact on the technical details of the solution. Other fact names discussed in Gary's blog, and thus likely to be recognizable to other users, include `app_tier` or `application_tier`.
-
-## Discouraged Options
-
-N/A
-
-# Feedback / Ideas for Improvement
-
-Nick Walker
-
-# Other Information
-
-Gary Larizza on the problem with `%{environment}`:  
-http://garylarizza.com/blog/2014/10/24/puppet-workflows-4-using-hiera-in-anger/
-
-# Appendix
-
-## Example of the problem
+### Example of the problem
 
 Let's assume you need to set your ntp server ip address differently per what a user calls an environment ( and we call a deployment_tier ).  In dev we want 10.10.25.25 and in production we want 10.10.29.29.  We set this by making an environment level of our hiera hierarchy and making a file for each environment.  
 
@@ -109,3 +78,33 @@ When we go to test the change we get an unexpected result in that our ntp server
 In this simple example you could imagine just copying the dev.yaml file to my_feat_branch.yaml to get it to work but this would mean your adding files to your data directory simply for testing purposes instead of for the final code /data.  
 
 The resolution is to simply separate Puppet Environments from data you want for customer environments ( application_tiers ).  When you make a custom fact for application tier when you go to test code you can supply whatever application_tier you'd like for testing without worrying about the name of the Puppet Environment.
+
+## Preferred Option
+
+A custom fact called `deployment_tier` MAY be implemented which reflects which deployment tier (Dev, Test, Prod) a node belongs to.
+
+The custom fact may be defined as a trusted fact before install, or defined via an external fact pre or post-install.
+
+If a Hiera hierarchy level is needed pertaining to deployment tier, the `%{deployment_tier}` value MAY be used in defining the hierarchy level(s). The `%{environment}` value SHOULD NOT be used in the definition of a Hiera hierarchy level.
+
+Configuration of the Hiera hierarchy should not be confused with configuration of the Hiera datadir. `%{environment}` can and should be used to configure the Hiera datadir. This is already [the default datadir configuration](https://docs.puppet.com/hiera/3.2/configuring.html#default-config-values).
+
+## Alternate Options
+
+Users may prefer to use a custom fact named something other than deployment_tier. This name is preferred as it does not re-use the term "environment", is generic, yet is indicative of the low-level workflow it pertains to.
+
+The exact name has no impact on the technical details of the solution. Other fact names discussed in Gary's blog, and thus likely to be recognizable to other users, include `app_tier` or `application_tier`.
+
+## Discouraged Options
+
+N/A
+
+## Feedback / Ideas for Improvement
+
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
+
+# Other Information
+
+Gary Larizza on the problem with `%{environment}`:  
+http://garylarizza.com/blog/2014/10/24/puppet-workflows-4-using-hiera-in-anger/

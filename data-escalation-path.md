@@ -52,17 +52,10 @@ This standard exists to clarify both the methods available and their utility.
   systems.  Explicit Hiera data lookups (via calls to the hiera() function)
   dilute these benefits.
 
-### Alternate Options
-
-
-### Discouraged Options
-
-
-
 ## Feedback / Ideas for Improvement
 
 * Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
-
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Relevant Information
 

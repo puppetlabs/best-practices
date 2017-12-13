@@ -63,3 +63,7 @@ management platform installed.
   Plans should be created with multiple tasks or `puppet resource` should be
   used in simple transitional state changes.
 
+## Feedback / Ideas for Improvement
+
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).

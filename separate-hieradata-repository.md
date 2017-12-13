@@ -147,10 +147,10 @@ This method is discouraged as it is an undocumented, unsupported use of `moduled
 fragile and could no longer be available at any time in the future without warning. When encountered, it should
 be replaced with one of the acceptable methods detailed in this standard.
 
-# Feedback / Ideas for Improvement
+## Feedback / Ideas for Improvement
 
-This standard was drafted by [Ben Ford](ben.ford@puppet.com) and [Tom Linkin](tom@puppet.com).
-Feedback is welcome, either on the CS Architecture mailing list, or directly.
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
 
 
 # Other Information
