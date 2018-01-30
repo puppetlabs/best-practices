@@ -11,8 +11,8 @@ including explanations for why it may be helpful to include specific files in
 the repository, or separate them into external repositories referenced by a
 Puppetfile.
 
-This document is not intedended to supercede the recommended default
-control repository found [here](https://github.com/puppetlabs/control-repo).
+This document is not intedended to supercede the recommended default control
+repository found [here](https://github.com/puppetlabs/control-repo).
 
 This document assumes at least an intermediate level knowledge of the use of
 Puppet, R10k, and the "Roles and Profiles" design pattern.
@@ -22,29 +22,46 @@ Puppet, R10k, and the "Roles and Profiles" design pattern.
 A typical control repository will look as follows:
 
 ```
-.
-|-- README.md
-|-- environment.conf
-|-- Puppetfile
-|-- hieradata/
-|-- manifests/
-|   `-- site.pp
-|-- site/
-|   |-- profile/
-|   |   `-- manifests/
-|   |       |-- base.pp
-|   |       |-- some_profile.pp
-|   |       `-- some_other_profile.pp
-|   |-- role/
-|   |   `-- manifests/
-|   |       |-- some_role.pp
-|   |       `-- some_other_role.pp
-|   |-- some_module/
-|   |   `-- ...
-|   `-- some_other_module/
-|
-`-- modules/
+
+├── data/
+├── environment.conf
+├── hiera.yaml
+├── Puppetfile
+├── README.md
+├── manifests/
+│   └── site.pp
+└── site/
+    ├── profile/
+    └── role/
 ```
+### data
+
+This directory contains the environment-layer-specific Hiera data. This is only
+valid when using Hiera 5. This directory will generally contain the Hiera data
+specific to an environment at a company. In some cases where for access control
+purposes pieces or the entirety of this directory are included from other
+sources via entries in the Puppetfile.
+
+### environment.conf
+
+This file is required at a minimum to set a modulepath that includes both `site`
+and `modules`. This cannot be set globally, and must be configured in this file
+on a per-control-repo basis. Other settings may include the environment timeout
+for the environment.
+
+### hiera.yaml
+
+This file is the configuration file of Hiera at the environment-layer and only
+works in Hiera 5 format. Only envrionment-layer Hiera configuration exists in
+this file. If there is not environment-layer Hiera required this file can be
+omitted.
+
+### Puppetfile
+
+Though not strictly required, this file will most likely exist in all control
+repositories. In the very rare case that no third party modules (either from a
+public source, or from separate module repositories within the organization) are
+included, this file may be omitted.
 
 ### README.md
 
@@ -53,19 +70,6 @@ ownership, and use of the control repository. What specific information is most
 valuable here is up to the organization implementing it, but it should contain
 at least the minimum to ensure that a user new to the organization but not
 necessarily Puppet and R10k can get their bearings.
-
-### environment.conf
-
-This file is required at a minimum to set a modulepath that includes both `site`
-and `modules`. This cannot be set globally, and must be configured in this file
-on a per-control-repo basis.
-
-### Puppetfile
-
-Though not strictly required, this file will most likely exist in all control
-repositories. In the very rare case that no third party modules (either from a
-public source, or from separate module repositories within the organization) are
-included, this file may be omitted.
 
 ### manifests
 
@@ -76,11 +80,11 @@ However, in nearly all cases, this directory will be included.
 
 ### manifests/site.pp
 
-When using the recommended method of classification -- assigning nodes to
-single roles in the Enterprise Console -- this file should contain a minimal
-amount of Puppet code. This code should be limited to setting global resource
-defaults and applying fact/hiera based classification. In rare cases, top scope
-values may be declared here.
+When using the recommended method of classification -- assigning nodes to single
+roles in the Enterprise Console -- this file should contain a minimal amount of
+Puppet code. This code should be limited to setting global resource defaults and
+applying fact/hiera based classification. In rare cases, top scope values may be
+declared here.
 
 ### site
 
@@ -98,8 +102,9 @@ other literature.
 
 In the majority of cases, these modules will be included in the control
 repository. In some cases, it may be valid to include these as external modules
-defined in the Puppetfile. See the relevant [Roles]() and [Profiles]() standards
-for more information.
+defined in the Puppetfile. See the relevant
+[Roles](puppet-code-abstraction-roles.md) and
+[Profiles](puppet-code-abstraction-profiles.md) best practises for more information.
 
 ### Component modules
 
@@ -145,13 +150,17 @@ included from other sources.
 The pattern of managing hieradata in a separate repository is both common and
 acceptable, though should typically only be done in cases where there is an
 identified need to separate access or the development cadence. This pattern is
-described in the [hieradata repository](separate-hieradata-repository.md) standard. 
+described in the [hieradata repository](separate-hieradata-repository.md)
+best practise.
+
+Under Hiera 5, the data in this directory would be considered global and should
+be deployed somehwere else.
 
 ### modules
 
 The r10k tool will overwrite all contents of this directory with the modules
 specified by the Puppetfile. If this directory does not exist, r10k or Code
-Manager will automatically create it.  Since git will not track an empty
+Manager will automatically create it. Since git will not track an empty
 directory, this will be the case.
 
 ### Other directories

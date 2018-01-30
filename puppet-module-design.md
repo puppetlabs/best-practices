@@ -6,11 +6,14 @@ The standard provides the best practises for designing Puppet modules.
 
 ## Expectations
 
-The standard applies to any Puppet developer writing Puppet code. This standard is applicable to Puppet 5 and later.
+The standard applies to any Puppet developer writing Puppet code. This standard
+is applicable to Puppet 5 and later.
 
 ## Best Practise Details
 
-This best practises  provides a method of creating modules. This does not cover how to write classes, defined types, functions or facts; but covers the best practises for these module elements.
+This best practises  provides a method of creating modules. This does not cover
+how to write classes, defined types, functions or facts; but covers the best
+practises for these module elements.
 
 ### Preferred Option
 
@@ -19,13 +22,26 @@ This best practises  provides a method of creating modules. This does not cover 
 The following are basic design best practises:
 
 * All Puppet code (i.e. *.pp files) must be under the `manifests` directory.
-* Modules must only contain resources that are related to the issue the module is solving and not resources that do not immediately relate to the problem. E.g. a `phpmyadmin` module would not contain resources to manage the installation of `Apache` or `MySQL`, only resources to provide configuration for these that relates to `phpmyadmin`.
-* Each module must contain a `README.md` in valid markdown format, containing at the minimum a description of the module and how to use the module.
-* Each class and defined type must include documentation at the top of the file that describes the purpose of the class or defined type, as a minimum, in a format that Puppet Strings can interpret.
-* Each module must contain a `metadata.json` file containing information, version, dependancies and intended operating systems for the module.
-* Public-facing classes or defined types must have their parameters documented at the top of the file, under the description, in a format that Puppet Strings can interpret.
-* Modules should be named after the technology it is managing, such as `apache` or `iis` and not a name that includes a verb, such as `manage_apache` or `enable_iis`.
-* Modules should contain examples of how the module is intended to be used in different scenarios.
+* Modules must only contain resources that are related to the issue the module
+  is solving and not resources that do not immediately relate to the problem.
+E.g. a `phpmyadmin` module would not contain resources to manage the
+installation of `Apache` or `MySQL`, only resources to provide configuration for
+these that relates to `phpmyadmin`.
+* Each module must contain a `README.md` in valid markdown format, containing at
+  the minimum a description of the module and how to use the module.
+* Each class and defined type must include documentation at the top of the file
+  that describes the purpose of the class or defined type, as a minimum, in a
+format that Puppet Strings can interpret.
+* Each module must contain a `metadata.json` file containing information,
+  version, dependancies and intended operating systems for the module.
+* Public-facing classes or defined types must have their parameters documented
+  at the top of the file, under the description, in a format that Puppet Strings
+can interpret.
+* Modules should be named after the technology it is managing, such as `apache`
+  or `iis` and not a name that includes a verb, such as `manage_apache` or
+`enable_iis`.
+* Modules should contain examples of how the module is intended to be used in
+  different scenarios.
 * Puppet code should adhere to the Puppet Style Guide
 
 #### Module Layout
@@ -54,47 +70,65 @@ The recommended module layout is as follows:
 
 The `data` directory contains the in-module Hiera data.
 
-The `examples` directory contains examples of how to declare and use the module's classes and defined types.
+The `examples` directory contains examples of how to declare and use the
+module's classes and defined types.
 
 The `facts.d` directory contains external facts that are synced to all nodes.
 
-The `files` directory contains static files that managed nodes can download. This directory may contain subdirectories.
+The `files` directory contains static files that managed nodes can download.
+This directory may contain subdirectories.
 
 The `functions` directory contains functions written in the Puppet language.
 
 The `hiera.yaml` contains the configuration of Hiera within the module.
 
-The `lib` directory contains plug-ins, such as custom facts, functions, types and providers. The contents of this directory are synced to all nodes.
+The `lib` directory contains plug-ins, such as custom facts, functions, types
+and providers. The contents of this directory are synced to all nodes.
 
-The `manifests` directory must contain all the Puppet manifests and can contain further directories describing implmentations, such as `client` or `server`.
+The `manifests` directory must contain all the Puppet manifests and can contain
+further directories describing implmentations, such as `client` or `server`.
 
 The `metadata.yaml` file contains metadata relating to the module.
 
-The `README.md` file contains documentation for the module, including description, setup, usage, references and limitations.
+The `README.md` file contains documentation for the module, including
+description, setup, usage, references and limitations.
 
-The `spec` directory contains tests for Puppet code in the `manifests` directory and plug-ins within the `lib` directory.
+The `spec` directory contains tests for Puppet code in the `manifests` directory
+and plug-ins within the `lib` directory.
 
 The `tasks` directory contains the code and metadata for Puppet Tasks.
 
-The `templates` directory contains templates that the module's manifests can use.
+The `templates` directory contains templates that the module's manifests can
+use.
 
 The `types` directory contains type aliases.
 
-Not all of the above directories will be required when creating a module. The Puppet Development Kit (PDK) should be used to create new modules, classes and tasks as this tool creates the correct directory structure. The PDK help provides information on using this tool to create new modules, classes and tasks.
+Not all of the above directories will be required when creating a module. The
+Puppet Development Kit (PDK) should be used to create new modules, classes and
+tasks as this tool creates the correct directory structure. The PDK help
+provides information on using this tool to create new modules, classes and
+tasks.
 
 #### Basic Modules
 
-A basic module is a module where there is a single class that contains all the resources for that module.
+A basic module is a module where there is a single class that contains all the
+resources for that module.
 
-When creating basic modules the entry point should be the class named after the module (i.e. the `init.pp` file). This file can contain all the resources required to implment the solution that the modules addresses.
+When creating basic modules the entry point should be the class named after the
+module (i.e. the `init.pp` file). This file can contain all the resources
+required to implment the solution that the modules addresses.
 
-The main class of a module is its interface point and should be the only parameterised class if possible, this allows the module author to control the usage of the entire module with the inclusion of a single class.
+The main class of a module is its interface point and should be the only
+parameterised class if possible, this allows the module author to control the
+usage of the entire module with the inclusion of a single class.
 
 #### More Advanced Modules
 
-In many cases the modules will be more complex due to the issue they are addressing.
+In many cases the modules will be more complex due to the issue they are
+addressing.
 
-There is often a need to separate installation, configuration and service elements of a module into their own classes, as follows:
+There is often a need to separate installation, configuration and service
+elements of a module into their own classes, as follows:
 
 ```shell
 <MODULE NAME>
@@ -105,7 +139,13 @@ There is often a need to separate installation, configuration and service elemen
     └── service.pp
 ```
 
-In some cases the module will have different implementations, such as `server` and `client` elements. If this is the case the manifests for each implementation should reside under a directory describing that implementation within the `manifests` directory of the module. The class defining the implementation should still reside under the root of the manifests directory and is the interface point for the implementation. The following is an example of the implementation:
+In some cases the module will have different implementations, such as `server`
+and `client` elements. If this is the case the manifests for each implementation
+should reside under a directory describing that implementation within the
+`manifests` directory of the module. The class defining the implementation
+should still reside under the root of the manifests directory and is the
+interface point for the implementation. The following is an example of the
+implementation:
 
 ```shell
 <MODULE NAME>
@@ -121,11 +161,14 @@ In some cases the module will have different implementations, such as `server` a
     └── server.pp
 ```
 
-In this case there is often no requirement for an `init.pp` file as the entry points are the `client.pp` and `server.pp` files.
+In this case there is often no requirement for an `init.pp` file as the entry
+points are the `client.pp` and `server.pp` files.
 
 #### Class Parameters and In-Module Data
 
-Parameters are the API interface for the module classes. Each parameter must be documented in any public-facing class in a format that Puppet Strings can interpret, as can be seen below:
+Parameters are the API interface for the module classes. Each parameter must be
+documented in any public-facing class in a format that Puppet Strings can
+interpret, as can be seen below:
 
 ```Puppet
 # ntp
@@ -142,7 +185,8 @@ Parameters are the API interface for the module classes. Each parameter must be 
 #   Specifies a file for NTP's configuration info. Default value: '/etc/ntp.conf' (or '/etc/inet/ntp.conf' on Solaris).
 ```
 
-When writing classes that have parameters the parameters should include the variable type where possible, such as:
+When writing classes that have parameters the parameters should include the
+variable type where possible, such as:
 
 ```puppet
 # ntp/manifests/init.pp
@@ -158,7 +202,10 @@ class ntp (
 }
 ```
 
-With the release of Hiera 5 the `params` design pattern is no longer required in most situations and has been replaced with in-module data. This requires a module `hiera.yaml`, which contains the hierarchy and backends for Hiera within the module. The following is an example of the `hiera.yaml` file:
+With the release of Hiera 5 the `params` design pattern is no longer required in
+most situations and has been replaced with in-module data. This requires a
+module `hiera.yaml`, which contains the hierarchy and backends for Hiera within
+the module. The following is an example of the `hiera.yaml` file:
 
 ```yaml
 # ntp/hiera.yaml
@@ -186,19 +233,37 @@ hierarchy:
     path: 'common.yaml'
 ```
 
-The hierarchy should only address differences in operating systems and not data specific to an environment or installation. Including a hierarchy using only operating system and not site specific information allows the module to be reusable. Information relating to sites, environments or installations should be provided at the `Profile` layer.
+The hierarchy should only address differences in operating systems and not data
+specific to an environment or installation. Including a hierarchy using only
+operating system and not site specific information allows the module to be
+reusable. Information relating to sites, environments or installations should be
+provided at the `Profile` layer.
 
 #### Puppet Tasks
 
-Puppet Tasks can be written in any language that is supported on the node. All Task files must reside within the `tasks` directory. Each Task must have an associated metadata file (`<TASK NAME.json>`) that contains the description, inputs and outputs of the Task.
+Puppet Tasks can be written in any language that is supported on the node. All
+Task files must reside within the `tasks` directory. Each Task must have an
+associated metadata file (`<TASK NAME.json>`) that contains the description,
+inputs and outputs of the Task.
 
 #### Module Testing
 
-All classes, defined types, and custom extensions should have associated testing. Unit testing should be included as a minimum and the tests should address common scenarios the module addresses, including operating systems, parameter variations and error handling.
+All classes, defined types, and custom extensions should have associated
+testing. Unit testing should be included as a minimum and the tests should
+address common scenarios the module addresses, including operating systems,
+parameter variations and error handling.
 
 ### Alternative Options
 
-In some cases the in-module Hiera 5 pattern is not suitable, in these cases the `params` design pattern should be used. The class containing the parameters for the module must be called `params` and must only contain variables and no resources. The `params` class shall not have any parameters. Any conditional logic within the `params` class must have a `default` clause with a `fail` statement to issues with unsatisfied test cases. The `params` class contains variables that can be referenced by classes in the module. If a class is to use the variables from the `params` class as defaults for the classes' parameters the class must inherit the `params` class:
+In some cases the in-module Hiera 5 pattern is not suitable, in these cases the
+`params` design pattern should be used. The class containing the parameters for
+the module must be called `params` and must only contain variables and no
+resources. The `params` class shall not have any parameters. Any conditional
+logic within the `params` class must have a `default` clause with a `fail`
+statement to issues with unsatisfied test cases. The `params` class contains
+variables that can be referenced by classes in the module. If a class is to use
+the variables from the `params` class as defaults for the classes' parameters
+the class must inherit the `params` class:
 
 ```puppet
 # params.pp
@@ -232,8 +297,10 @@ class apache (
 
 ## Feedback / Ideas for Improvement
 
-* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
-* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the
+  like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git
+  repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Information
 

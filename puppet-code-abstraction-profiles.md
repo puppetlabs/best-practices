@@ -14,8 +14,8 @@ technology stack.
 
 ## Expectations
 
-All new customers to Puppet should implement Profiles to be aligned
-with current Puppet best practices. Existing Puppet customers will
+All new users to Puppet should implement Profiles to be aligned
+with current Puppet best practices. Existing Puppet users will
 find benefit in switching to a Profile-based implementation, however the
 migration to Profiles must ensure consistency to eliminate enforcement gaps.
 
@@ -26,7 +26,7 @@ may be necessary. The purpose of the Profile remains important however the namin
 of each Profile may need to change to accommodate for multiple tenancy.
 
 
-## Standard Details
+## Best Practice Details
 
 ### Preferred Option
 
@@ -98,8 +98,10 @@ of each Profile may need to change to accommodate for multiple tenancy.
 
 ## Feedback / Ideas for Improvement
 
-* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
-* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the
+  like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git
+  repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Information
 

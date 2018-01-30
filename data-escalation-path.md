@@ -9,7 +9,7 @@ This standard exists to clarify both the methods available and their utility.
 
 ## Expectations
 
-* All Puppet customers using the Roles and Profiles design pattern will benefit
+* All Puppet users using the Roles and Profiles design pattern will benefit
   from the guidelines in this standard.
 
 * All guidelines within this standard apply to expressing site-specific data
@@ -18,8 +18,7 @@ This standard exists to clarify both the methods available and their utility.
 * Instances of "Hiera" may be substituted with the preferred data binding
   backend should Hiera be deemed unsuitable.
 
-
-## Standard Details
+## Best Practise Details
 
 ### Preferred Option
 
@@ -49,13 +48,15 @@ This standard exists to clarify both the methods available and their utility.
   Users can quickly determine the data API of a class without having to read or
   understand its logic, and class parameters also expose data lookup information
   about a class that can be useful for potential integration with external
-  systems.  Explicit Hiera data lookups (via calls to the hiera() function)
+  systems.  Explicit Hiera data lookups (via calls to the lookup() or hiera() functions)
   dilute these benefits.
 
 ## Feedback / Ideas for Improvement
 
-* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the like: https://www.ietf.org/rfc/rfc2119.txt
-* Feedback can be provided as an issue on this [Git repository](https://github.com/puppetlabs/best-practices/issues).
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the
+  like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git
+  repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Relevant Information
 
