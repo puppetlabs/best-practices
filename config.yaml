@@ -4,6 +4,6 @@
 description: 'Best Practices'
 customer_keys: ['pse','pse_email']
 summary_file: 'README.md'
-templates_list: .pdf/met_templates.yaml
+templates_list: .pdf/templates.yaml
 cover_template: .pdf/cover.erb
 stylesheet: .pdf/style.css
