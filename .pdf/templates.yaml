@@ -1,0 +1,16 @@
+---
+build_order:
+  - 'README.md'
+  - 'brownfields.md'
+  - 'classification-and-data-pattern.md'
+  - 'config.yaml'
+  - 'control-repo-contents.md'
+  - 'data-escalation-path.md'
+  - 'facts-and-classification.md'
+  - 'puppet-code-abstraction-profiles.md'
+  - 'puppet-code-abstraction-roles.md'
+  - 'puppet-module-design.md'
+  - 'puppet-modules-and-the-control-repo.md'
+  - 'separate-hieradata-repository.md'
+  - 'use-of-environment-in-hiera-hierarchy.md'
+  - 'when_to_use_puppet_tasks_vs_puppet_dsl_code.md'

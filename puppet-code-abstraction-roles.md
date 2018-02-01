@@ -21,8 +21,8 @@ node-specific data.
 
 ## Expectations
 
-All new customers to Puppet should implement Roles to be aligned
-with current Puppet best practices. Existing Puppet customers will
+All new users to Puppet should implement Roles to be aligned
+with current Puppet best practices. Existing Puppet users will
 find benefit in switching to a Role-based implementation, however the
 migration to Roles must ensure consistency to eliminate enforcement gaps.
 
@@ -33,7 +33,7 @@ may be necessary. The purpose of the Role remains important however the naming
 of each Role may need to change to accommodate for multiple tenancy.
 
 
-## Standard Details
+## Best Practise Details
 
 ### Preferred Option
 
@@ -100,9 +100,12 @@ of each Role may need to change to accommodate for multiple tenancy.
 * Roles shall not contain resources - only declarations of Profiles and conditional
   logic.
 
-
 ## Feedback / Ideas for Improvement
 
+* Loosely following RFC2119 for wording of things like 'MUST', 'SHALL', and the
+  like: https://www.ietf.org/rfc/rfc2119.txt
+* Feedback can be provided as an issue on this [Git
+  repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Information
 

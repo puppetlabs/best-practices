@@ -1,0 +1,7 @@
+<div class="cover wrapper">
+  <img class="cover logo" src="<%= File.expand_path(".pdf/logo.svg") %>">
+  <h1><%= @customer['engagement_title'] %></h1>
+  <div class="cover footer">
+    Prepared on <%= Time.now.strftime("%-d %B %Y") %> for <%= @customer['name'] %> by <%= @customer['pse'] %> on behalf of Puppet, Inc.
+  </div>
+</div>
