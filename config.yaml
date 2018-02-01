@@ -2,7 +2,7 @@
 # https://github.com/puppetlabs/prosvc-engagement-docs
 ---
 description: 'Best Practices'
-customer_keys: ['name','pse','pse_email']
+customer_keys: ['name','pse','pse_email','logo']
 summary_file: 'README.md'
 templates_list: .pdf/templates.yaml
 cover_template: .pdf/cover.erb
