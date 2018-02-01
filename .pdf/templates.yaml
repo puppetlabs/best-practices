@@ -1,5 +1,5 @@
 ---
-build_order:
+build-order:
   - 'README.md'
   - 'brownfields.md'
   - 'classification-and-data-pattern.md'
@@ -13,4 +13,4 @@ build_order:
   - 'puppet-modules-and-the-control-repo.md'
   - 'separate-hieradata-repository.md'
   - 'use-of-environment-in-hiera-hierarchy.md'
-  - 'when_to_use_puppet_tasks_vs_puppet_dsl_code.md'
+  - 'when-to-use-puppet-tasks-vs-puppet-dsl-code.md'
