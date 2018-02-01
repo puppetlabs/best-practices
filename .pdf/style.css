@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'Consolas';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Consolas');
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans'), local('OpenSans');
+}
+
+html, body {
+  word-wrap: break-word;
+  font-family: 'Open Sans', sans-serif;
+  color: #000;
+  font-size: 14px;
+}
+
+code {
+  font-family: 'Consolas', 'Inconsolata', monospace;
+  font-size: 14px;
+  color: #333;
+  background-color: rgb(247, 247, 247);
+  padding: 3px;
+  line-height: 1.3;
+}
+
+hr {
+  border: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #34383D;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 25px;
+  margin-top: 50px;
+}
+
+h2, h3 {
+  margin-top: 25px;
+}
+
+a:link {
+  color: rgb(65, 131, 196);
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid rgb(238, 238, 238);;
+  padding: 10px;
+  width: 100%;
+}
+
+td, th {
+  padding: 5px;
+  border: 1px solid rgb(238, 238, 238);
+}
+
+// The following forces table rows not to be split across
+// pages during the conversion to other formats, fixing lots
+// of cosmetic issues
+
+/* Fix begins */
+table thead {
+  display: table-header-group;
+}
+
+table tr {
+  page-break-inside: avoid;
+}
+/* Fix ends */
+
+img {
+  max-width: 680px;
+}
+
+.highlight {
+  page-break-inside: avoid;
+  background-color: rgb(247, 247, 247);
+  border-radius: 3px;
+  padding: 16px;
+}
+
+/* Cover Page */
+.cover.footer {
+  font-size: 15px;
+  color: #34383D;
+}
+
+.cover.wrapper {
+  margin-top: 60px;
+}
+
+.cover.logo {
+  max-width: 870px;
+}
+
+.cover.customer.logo {
+  max-width: 300px;
+  max-height: 300px;
+  margin-top: 50px;
+}
+/* Cover Page */
+
+#content {
+  display: table;
+}
+
+.n  { color: rgb(167, 29, 93);  }
+.s1 { color: rgb(121, 93, 163); }
+.py { color: rgb(0, 134, 179);  }
+.s  { color: rgb(99, 163, 92);  }
+.k  { color: rgb(167, 29, 93);  }
+.nc { color: rgb(121, 93, 163); }
+.no { color: rgb(24, 54, 145);  }
+.ss { color: rgb(0, 134, 179);  }
+.s2 { color: rgb(24, 54, 145);  }

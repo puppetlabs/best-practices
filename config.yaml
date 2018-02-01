@@ -1,0 +1,9 @@
+# This is the configuration file for the internal PDF generator
+# https://github.com/puppetlabs/prosvc-engagement-docs
+---
+description: 'Best Practices'
+customer_keys: ['pse','pse_email']
+summary_file: 'README.md'
+templates_list: .pdf/met_templates.yaml
+cover_template: .pdf/cover.erb
+stylesheet: .pdf/style.css
