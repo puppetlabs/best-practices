@@ -1,5 +1,5 @@
 ---
-build-order:
+build_order:
   - 'README.md'
   - 'brownfields.md'
   - 'classification-and-data-pattern.md'
