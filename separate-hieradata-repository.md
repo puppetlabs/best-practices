@@ -12,22 +12,22 @@ compelling need is identified, for example:
 * Deployment process still dependant on promotion through static tiers
 
 The `Puppetfile` is used to manage this separate repository when following this
-best practise.
+best practice.
 
 
 # Expectations
 
 All new customers working with someone in CS should be directed to follow this
-best practise if, and only if, there is an identified need for decoupling as
+best practice if, and only if, there is an identified need for decoupling as
 described above.
 
-This best practise may also be applied to existing users if a need is
-identified. However application of this best practise to an existing user may
-not straight forward. The impact of adopting this best practise for an existing
+This best practice may also be applied to existing users if a need is
+identified. However application of this best practice to an existing user may
+not straight forward. The impact of adopting this best practice for an existing
 user's workflow(s) should be explored and considered.
 
 
-# Best Practise Details
+# Best Practice Details
 
 ## Users on Puppet Enterprise 2016.4 and later
 
@@ -103,7 +103,7 @@ your `hiera.yaml` to reflect this:
 
 ## Deployment Considerations
 
-Choosing to manage your data in the manner described in this best practise will
+Choosing to manage your data in the manner described in this best practice will
 require additional attention be paid to the process of deploying changes. Prior
 to moving the Hieradata into it's own repository, when it was stored inside the
 Control Repository, a change to data would invoke a deployment of the changes if
@@ -144,7 +144,7 @@ entries in a `Puppetfile` to redirect the installation location. Though it is
 not directly documented, the `moduledir` directive can be used to "reset" the
 path `mod` entries install into at any point in a `Puppetfile`. In the past this
 has been used to achieve a similar effect as the `install_path` argument on the
-`mod` entry as detailed in this best practise.
+`mod` entry as detailed in this best practice.
 
 ```ruby
 mod 'trlinkin/nsswitch'
@@ -158,7 +158,7 @@ mod 'site_data',
 This method is discouraged as it is an undocumented, unsupported use of
 `moduledir`. This method is overall fragile and could no longer be available at
 any time in the future without warning. When encountered, it should be replaced
-with one of the acceptable methods detailed in this best practise.
+with one of the acceptable methods detailed in this best practice.
 
 ## Feedback / Ideas for Improvement
 

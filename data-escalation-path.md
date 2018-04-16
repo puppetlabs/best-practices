@@ -18,7 +18,7 @@ This standard exists to clarify both the methods available and their utility.
 * Instances of "Hiera" may be substituted with the preferred data binding
   backend should Hiera be deemed unsuitable.
 
-## Best Practise Details
+## Best Practice Details
 
 ### Preferred Option
 
@@ -61,4 +61,3 @@ This standard exists to clarify both the methods available and their utility.
 ## Other Relevant Information
 
 ![Data Escalation Path](images/data/data_escalation_path.png)
-

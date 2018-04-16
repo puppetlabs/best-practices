@@ -2,7 +2,7 @@
 
 ## Summary
 
-This best practise defines the preferred path for how to classify in the PE GUI,
+This best practice defines the preferred path for how to classify in the PE GUI,
 and the preferred place to store data. In summary the console classification
 should use 1 role per group, and data should be stored in Hiera to avoid split
 sources of truth. PE configuration is the exception which is currently done in
@@ -13,19 +13,19 @@ the console (but likely to change in the future).
 All new Puppet Enterprise users should use the below node classification and
 data standards.
 
-This best practise may not fit with high complexity environments with many
+This best practice may not fit with high complexity environments with many
 snowflake nodes.
 
-## Best Practise Details
+## Best Practice Details
 
 ### Preferred Option
 
 #### Classification via the PE classifier
 
-The best practise for classification is for each node to use one role/Node
+The best practice for classification is for each node to use one role/Node
 Group.
 
-There are two reasons for this best practise:
+There are two reasons for this best practice:
 
 1. Users should not use parameters in the PE console as the PE classifier is not
    versionable
@@ -34,14 +34,14 @@ There are two reasons for this best practise:
 
 #### Data
 
-The recommended best Practise is to use params in Hiera, except for PE
+The recommended best practice is to use params in Hiera, except for PE
 infrastructure, which should be set as parameters in the PE Classifier
 
-This best practise, in general, does not recommend users editing parameters in
+This best practice, in general, does not recommend users editing parameters in
 the console. However, Puppet Enterprise documentation advises users to edit
 parameter values for PE Infrastructure in the console. Therefore, for user
-modules, the best practise is that all data should be in Hiera. For PE Infra,
-the best practise is that all data should be in the PE Console as parameters.
+modules, the best practice is that all data should be in Hiera. For PE Infra,
+the best practice is that all data should be in the PE Console as parameters.
 
 The PE console and Hiera have no visibility of each other, so err on Hiera for
 most things that need a data override.
