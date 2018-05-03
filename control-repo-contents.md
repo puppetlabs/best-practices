@@ -104,7 +104,7 @@ In the majority of cases, these modules will be included in the control
 repository. In some cases, it may be valid to include these as external modules
 defined in the Puppetfile. See the relevant
 [Roles](puppet-code-abstraction-roles.md) and
-[Profiles](puppet-code-abstraction-profiles.md) best practises for more information.
+[Profiles](puppet-code-abstraction-profiles.md) best practices for more information.
 
 ### Component modules
 
@@ -151,7 +151,7 @@ The pattern of managing hieradata in a separate repository is both common and
 acceptable, though should typically only be done in cases where there is an
 identified need to separate access or the development cadence. This pattern is
 described in the [hieradata repository](separate-hieradata-repository.md)
-best practise.
+best practice.
 
 Under Hiera 5, the data in this directory would be considered global and should
 be deployed somehwere else.

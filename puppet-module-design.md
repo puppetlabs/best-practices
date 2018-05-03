@@ -2,24 +2,24 @@
 
 ## Summary
 
-The standard provides the best practises for designing Puppet modules.
+The standard provides the best practices for designing Puppet modules.
 
 ## Expectations
 
 The standard applies to any Puppet developer writing Puppet code. This standard
 is applicable to Puppet 5 and later.
 
-## Best Practise Details
+## Best Practice Details
 
-This best practises  provides a method of creating modules. This does not cover
+This best practices  provides a method of creating modules. This does not cover
 how to write classes, defined types, functions or facts; but covers the best
-practises for these module elements.
+practices for these module elements.
 
 ### Preferred Option
 
 #### Module Design
 
-The following are basic design best practises:
+The following are basic design best practices:
 
 * All Puppet code (i.e. *.pp files) must be under the `manifests` directory.
 * Modules must only contain resources that are related to the issue the module
@@ -312,4 +312,3 @@ class apache (
 * https://puppet.com/docs/puppet/latest/functions_basics.html
 * https://puppet.com/docs/puppet/latest/hiera_intro.html
 * https://puppet.com/docs/puppet/latest/style_guide.html
-

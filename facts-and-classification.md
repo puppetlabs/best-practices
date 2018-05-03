@@ -16,7 +16,7 @@ classification.
 This standard applies to any user that uses rules within Node Groups of the
 Node Classifier.
 
-## Best Practise Details
+## Best Practice Details
 
 ### Preferred Option
 

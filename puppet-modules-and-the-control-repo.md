@@ -7,16 +7,16 @@ Manager or R10k to ensure that the required Puppet environments containing all
 necessary modules (at their requested versions) are present on all of their
 Puppet masters. The decision of where to store Puppet modules (whether in the
 control repo or in their own version control repositories) quickly arises for
-both tools. This document defines the best practise that can be referenced to
+both tools. This document defines the best practice that can be referenced to
 assist in making that decision.
 
 ## Expectations
 
 * All Puppet users using Code Manager or R10k will benefit from the guidelines
-  in this best practise.
+  in this best practice.
 
 
-## Best Practise Details
+## Best Practice Details
 
 ### Preferred Option
 
@@ -53,7 +53,7 @@ organization
 * Customers still using a "monolithic module repository" (i.e. a version control
   repository containing all modules necessary for a Puppet environment) should
 transition modules to their own repositories or to being stored within the
-control repo according to this best practise.
+control repo according to this best practice.
 
 
 ## Feedback / Ideas for Improvement
@@ -64,5 +64,3 @@ control repo according to this best practise.
   repository](https://github.com/puppetlabs/best-practices/issues).
 
 ## Other Relevant Information
-
-

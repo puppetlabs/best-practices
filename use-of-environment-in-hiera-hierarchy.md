@@ -15,7 +15,7 @@ using `%{environment}` in their Hiera hierarchy.
 Existing customers using `%{environment}` in their Hiera hierarchy should be
 informed of the problem and guided towards using a custom fact.
 
-# Best Practise Details
+# Best Practice Details
 
 ## Definitions
 

@@ -2,20 +2,20 @@
 
 ## Summary
 
-This best practise describes how customers can use PE to manage brownfields
+This best practice describes how customers can use PE to manage brownfields
 environments without causing massive amounts of change at once across their
 environments.
 
 ## Expectations
 
 Most new Puppet users that manage brownfields environments will benefit from
-this best practise and most likely discard this pattern once their brownfields
+this best practice and most likely discard this pattern once their brownfields
 environment is fully compliant.
 
 Many current Puppet users who have had PE in place for some time will not need
 this standard, unless they are given further brownfields environments to manage.
 
-## Best Practise Details
+## Best Practice Details
 
 ### Preferred Option
 
