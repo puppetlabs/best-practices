@@ -63,7 +63,7 @@ of ruby as a pre-requisite.
 
 ### Discouraged Options
 
-* Tasks shall not be used for ad-hoc configuration management. The exception
+* Imperative Tasks shall not be used for ad-hoc configuration management. The exception
   would be when a configuration option is changed before a transition state. An
 example would changing a configuration file, stopping a service, then reverting
 the configuration change after restarting a service.
