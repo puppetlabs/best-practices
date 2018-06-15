@@ -2,7 +2,7 @@
 
 ## Summary
 
-Puppet Enterprise users should install metrics collection. This standard defines how to gather, retain, and graph metrics for Puppet Enterprise components in a format that is easily shareable with Puppet Support.  
+To ensure the information needed to troubleshoot performance issues is available when needed, it is recommended that Puppet Enterprise users set up a metrics gathering tool.  This standard defines how to gather, retain, and graph metrics for Puppet Enterprise components in a format that is easily shareable with Puppet Support.  
 
 ## Expectations
 
