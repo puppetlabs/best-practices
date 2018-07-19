@@ -21,7 +21,7 @@ We recommend using the [puppet_metrics_collector](https://github.com/puppetlabs/
 
 #### Storing and visualizing metrics 
 
-For permanent visualization of metrics we recommend the [puppetlabs-pe_metrics_dashboard](https://github.com/puppetlabs/puppetlabs-pe_metrics_dashboard) module to store historical metrics in influxDB and visualize metrics with Grafana.  This option requires an additional server to run influxDB and Grafana.  After configuring influxDB with the module you will configure *puppet-metrics-collector* to directly export metrics into InfluxDB.
+For permanent visualization of metrics we recommend the [puppetlabs-puppet_metrics_dashboard](https://forge.puppet.com/puppetlabs/puppet_metrics_dashboard) module to store historical metrics in influxDB and visualize metrics with Grafana.  This option requires an additional server to run influxDB and Grafana.  After configuring influxDB with the module you will configure *puppet-metrics-collector* to directly export metrics into InfluxDB.
 
 For temporary visualization of metrics we recommend [puppet-metrics-viewer](https://github.com/puppetlabs/puppet-metrics-viewer).  This option uses a docker container to allow visualizing the metrics on an ad-hoc basis but no data is permanently stored.
 
@@ -42,5 +42,5 @@ It is possible to collect metrics from JMX or direct export of graphite metrics 
 Please submit issues to the projects below if you have ideas for improvement:
 
 [puppet_metrics_collector](https://github.com/puppetlabs/puppetlabs-puppet_metrics_collector)  
-[pe_metrics_dashboard](https://github.com/puppetlabs/puppetlabs-pe_metrics_dashboard)  
+[puppet_metrics_dashboard](https://github.com/puppetlabs/puppet_metrics_dashboard)  
 [puppet-metrics-viewer](https://github.com/puppetlabs/puppet-metrics-viewer)  
