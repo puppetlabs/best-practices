@@ -171,5 +171,5 @@ with one of the acceptable methods detailed in this best practice.
 # Other Information
 
 * https://support.puppet.com/hc/en-us/articles/226118987
-* https://docs.puppet.com/pe/2016.5/cmgmt_puppetfile.html#specify-install-paths-for-repositories
-* https://docs.puppet.com/pe/latest/code_mgr.html
+* https://puppet.com/docs/pe/latest/puppetfile.html#specify-installation-paths-for-repositories
+* https://puppet.com/docs/pe/latest/code_mgr_how_it_works.html

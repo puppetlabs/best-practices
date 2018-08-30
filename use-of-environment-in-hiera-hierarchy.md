@@ -143,7 +143,7 @@ level.
 Configuration of the Hiera hierarchy should not be confused with configuration
 of the Hiera datadir. `%{environment}` can and should be used to configure the
 Hiera datadir. This is already [the default datadir
-configuration](https://docs.puppet.com/hiera/3.2/configuring.html#default-config-values).
+configuration](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#the-default-configuration).
 
 ## Alternate Options
 

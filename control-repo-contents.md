@@ -179,6 +179,6 @@ automated testing, and documentation.
 
 For foundational technical information, please see the documents linked below.
 
-* https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
-* https://docs.puppet.com/puppet/latest/config_file_environment.html#modulepath
-* https://docs.puppet.com/pe/latest/code_mgr.html
+* https://puppet.com/docs/pe/latest/control_repo.html
+* https://puppet.com/docs/puppet/latest/config_file_environment.html#modulepath
+* https://puppet.com/docs/pe/latest/code_mgr_how_it_works.html
