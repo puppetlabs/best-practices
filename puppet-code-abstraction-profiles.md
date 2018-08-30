@@ -105,4 +105,4 @@ of each Profile may need to change to accommodate for multiple tenancy.
 
 ## Other Information
 
-* https://docs.puppet.com/pe/latest/r_n_p_intro.html
+* https://puppet.com/docs/pe/latest/the_roles_and_profiles_method.html
