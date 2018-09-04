@@ -28,9 +28,11 @@ Avg free JRubies is the primary metric to use when determining when you need to 
 
 10K / 3 = 3,333 nodes per compile master 
 
-The magic number for how many nodes a compile master can support changes over time as puppet code is added, catalogs change, and/or facts are added.  When you are running compile masters with more than 1 avg free JRuby then you have capacity to add more nodes to your PE installation.  Another useful calculation is nodes per JRuby.
+The magic number for how many nodes a compile master can support changes over time as puppet code is added, catalogs change, and/or facts are added.  
 
-Assume 10k nodes with 3 compile masters with 8 JRubies each and averaging 1 free JRuby on each compile master.  
+When you are running compile masters with more than 1 avg free JRuby then you have capacity to add more nodes to your PE installation.  In other words, you should add additional compile masters when you have less than 1 avg free Jruby.  
+
+Another useful calculation is nodes per JRuby.  Assume 10k nodes with 3 compile masters with 8 JRubies each and averaging 1 free JRuby on each compile master.  
 
 10k / 24 = 416 nodes per JRuby. 
 
