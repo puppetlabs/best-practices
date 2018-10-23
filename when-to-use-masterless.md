@@ -37,7 +37,7 @@ Some high performance computing environments have traditionally gravitated towar
 * CPU resources are at a premium, and the cost of running **any** non-essential load is too high
 * Managed system count is large enough that a non-trivial puppet configuration with compile masters might be desired
 
-High performance compute environments might also reboot/reconfigure an entire cluster at once in preparation for the next batch job which could present a thundering herd problem.
+High performance compute environments might also reboot/reconfigure an entire cluster at once in preparation for the next batch job which could present a thundering herd problem. (Puppet 4.0/Puppet Server 2.0 and newer have several features that mitigate thundering herds; Puppet 5 and 6 even more so.)
 
 HPC Systems are typically associated with (and dependant on) one or more low-latency, high-performance file systems, allowing all nodes to easily access Puppet code from a single (read-only) location. This source of truth reduces code distribution overhead associated with other use cases (e.g. shared nothing). Use of version control remains strongly encouraged; editing a file on the shared file system may seem quick and easy, knowing that all nodes will see the change immediately, but this approach brings several hazards and risks. The same file system can also be a destination for puppet run output, logs etc. This may simplify troubleshooting versus other use cases.
 
