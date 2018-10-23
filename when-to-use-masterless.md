@@ -30,7 +30,18 @@ Masterless is not one of the approved Puppet architectures, which limits the amo
 
 First boot configuration management is desired and Puppet is uninstalled immediately after the first run. This is sometimes seen in high performance computing environments where nodes are immutable and CPU utilization of an agent is seen as a problem.
 
+#### HPC/Supercomputing
+
 High performance compute environments might also reboot/reconfigure an entire cluster at once in preparation for the next batch job which could present a thundering herd problem.
+
+HPC Systems are typically associated with (and dependant on) one or more low-latency, high-performance file systems, allowing all nodes to easily access Puppet code from a single (read-only) location. This source of truth reduces code distribution overhead associated with other use cases (e.g. shared nothing). Use of version control remains strongly encouraged; editing a file on the shared file system may seem quick and easy, knowing that all nodes will see the change immediately, but this approach brings several hazards and risks. The same file system can also be a destination for puppet run output, logs etc. This may simplify troubleshooting versus other use cases.
+
+Some HPC sites use 'puppet apply' as part of their node health checks, to ensure each node is:
+* in its desired state, healthy and otherwise ready to process the next job
+* running the latest configuration
+* configured consistently with its peers participating in the job
+
+While this approach can have several benefits, it can also add significant complexity as node config is (typically) only updated at the start of a new job. (The nodes with the longest running jobs have the oldest configuration, and the ones with the just-started jobs have the newest, and every other node is some version in between.) This may make it more difficult to know when a specific configuration change is rolled out across **all** nodes in the entire cluster.
 
 ## Other Information
 
