@@ -28,9 +28,14 @@ Masterless is not one of the approved Puppet architectures, which limits the amo
 
 ### Situations where users might use Puppet without a master
 
-First boot configuration management is desired and Puppet is uninstalled immediately after the first run. This is sometimes seen in high performance computing environments where nodes are immutable and CPU utilization of an agent is seen as a problem.
+Desired state is used for provisioning, but not afterwards. (e.g. "Here's a node that we know is good. What you do with it from now on is your business; don't call us if it breaks.")
 
 #### HPC/Supercomputing
+
+Some high performance computing environments have traditionally gravitated towards a masterless model, for instance when:
+* nodes are immutable, and so Puppet is just confirming that desired state is enforced (e.g. services are running, tempfs isn't full, etc.) and configuration is handeled in some other way (e.g. an exported, read-only root file system) 
+* CPU resources are at a premium, and the cost of running **any** non-essential load is too high
+* Managed system count is large enough that a non-trivial puppet configuration with compile masters might be desired
 
 High performance compute environments might also reboot/reconfigure an entire cluster at once in preparation for the next batch job which could present a thundering herd problem.
 
@@ -42,6 +47,8 @@ Some HPC sites use 'puppet apply' as part of their node health checks, to ensure
 * configured consistently with its peers participating in the job
 
 While this approach can have several benefits, it can also add significant complexity as node config is (typically) only updated at the start of a new job. (The nodes with the longest running jobs have the oldest configuration, and the ones with the just-started jobs have the newest, and every other node is some version in between.) This may make it more difficult to know when a specific configuration change is rolled out across **all** nodes in the entire cluster.
+
+Please note that most of these concerns can be addressed simply and easily with Puppet 4.4 and newer features such as [static catalogs](https://puppet.com/docs/puppet/6.0/static_catalogs.html) and [direct change](https://puppet.com/docs/pe/2019.0/direct_puppet_a_workflow_for_controlling_change.html)-based workflow. An approach based on these features can strike a balance between having no desired state enforcement while jobs are running (e.g. jobs failing because a limited resource is depleted slowly during the run, which Puppet could identify and fix) while not requiring a significant Puppet infrastructure to maintain, even in the case of a thundering herd.)
 
 ## Other Information
 
