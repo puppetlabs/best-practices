@@ -54,7 +54,7 @@ simpler languages on the platform ( e.g. `ruby` or `python` ).
 * Tasks may use a platform specific language that is the most familiar to
   broadest user group in your organization.
 
-* Tasks may use puppets ruby stack when users are agnostic about the language.
+* Tasks may use puppet's ruby stack when users are agnostic about the language.
   Puppet ruby is a known common denominator and reduces the need for management
 of ruby as a pre-requisite.
 
@@ -76,7 +76,7 @@ configuration change as part of the automation timeline (e.g. starting a service
 after a db migration).
 
 * Tasks should not reimplement existing functionality of puppet or the puppet
-  tasks framework. Feedback from the task shall always make it's way back to the
+  tasks framework. Feedback from the task shall always make its way back to the
 Puppet Enterprise console. Ex. Don't implement a different logging framework or
 host filtering logic within a task rather than using PQL.
 
