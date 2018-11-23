@@ -155,7 +155,8 @@ mod 'site_data',
   :git => 'https://git.company.net/team/site_data.git'
 ```
 
-This method is discouraged as it is an undocumented, unsupported use of
+Using the `moduledir` directive to place a `hieradata` repository outside of the
+modules directory is discouraged as it is an undocumented, unsupported use of
 `moduledir`. This method is overall fragile and could no longer be available at
 any time in the future without warning. When encountered, it should be replaced
 with one of the acceptable methods detailed in this best practice.
