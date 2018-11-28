@@ -139,9 +139,9 @@ description of the environment.
 
 ### `moduledir` method In R10k 1.4.0, it became possible to use the `moduledir`
 directive to direct R10k module entries to install modules in a non-standard
-relative path. The `moduledir` directive can be placed before before all `mod`
+relative path. The `moduledir` directive should be placed before before all `mod`
 entries in a `Puppetfile` to redirect the installation location. Though it is
-not directly documented, the `moduledir` directive can be used to "reset" the
+not documented, the `moduledir` directive can currently be used to "reset" the
 path `mod` entries install into at any point in a `Puppetfile`. In the past this
 has been used to achieve a similar effect as the `install_path` argument on the
 `mod` entry as detailed in this best practice.
@@ -155,11 +155,12 @@ mod 'site_data',
   :git => 'https://git.company.net/team/site_data.git'
 ```
 
-Using the `moduledir` directive to place a `hieradata` repository outside of the
-modules directory is discouraged as it is an undocumented, unsupported use of
-`moduledir`. This method is overall fragile and could no longer be available at
-any time in the future without warning. When encountered, it should be replaced
-with one of the acceptable methods detailed in this best practice.
+Using the `moduledir` directive at a point other than the beginning of the Puppetfile
+to place a `hieradata` repository outside of the modules directory is discouraged 
+as it is an undocumented and unsupported use of `moduledir`. This method is overall 
+fragile and could no longer be available at any time in the future without warning. 
+When encountered, it should be replaced with one of the acceptable methods detailed in 
+this best practice.
 
 ## Feedback / Ideas for Improvement
 
@@ -173,4 +174,5 @@ with one of the acceptable methods detailed in this best practice.
 
 * https://support.puppet.com/hc/en-us/articles/226118987
 * https://puppet.com/docs/pe/latest/puppetfile.html#specify-installation-paths-for-repositories
+* https://puppet.com/docs/pe/2018.1/puppetfile.html#optional-change-the-puppetfile-module-installation-directory
 * https://puppet.com/docs/pe/latest/code_mgr_how_it_works.html
