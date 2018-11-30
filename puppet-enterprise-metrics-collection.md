@@ -29,7 +29,7 @@ Both options use a set of example dashboards with the most useful metrics for tr
 
 ### Alternate Options
 
-While the preferred option allows for long term analysis of the performance data, the developer dashboards can be used before long term solutions have been configured. The [PuppetDB dashboard](https://puppet.com/docs/puppetdb/5.2/maintain_and_tune.html#monitor-the-performance-dashboard) and the [Puppetserver developer dashboard](https://puppet.com/docs/puppetserver/5.2/puppet_server_metrics.html#accessing-the-developer-dashboard) provide a real time view of the current state of these services. This can be helpful in troubleshooting issues, but does not provide historical data. 
+While the preferred option allows for long term analysis of the performance data, the PuppetDB developer dashboard can be used before long term solutions have been configured. The [PuppetDB dashboard](https://puppet.com/docs/puppetdb/5.2/maintain_and_tune.html#monitor-the-performance-dashboard) provides a real time view of the current state of the PuppetDB service. This can be helpful in troubleshooting issues, but does not provide historical data. 
 
 *Note*: The PuppetDB dashboard negatively impacts performance and should not be left open. Instead use it for troubleshooting specific incidents when you don't yet have longer term metrics gathering and visualization set up. 
 
