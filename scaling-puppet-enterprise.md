@@ -50,7 +50,11 @@ A rule of thumb for the PuppetDB service is that at most a single PuppetDB servi
 
 ### Alternate Options
 
-In order to mediate a known spike in JRuby use for pluginsync, you can install the [bulk_pluginsync module](https://forge.puppet.com/npwalker/bulk_pluginsync) which avoids the need to use pluginsync by having your agent installation script download a tarball of the plugins from your master and extract it into place before installing the agent.
+In order to mediate a known spike in JRuby use for pluginsync, you can use bulk_pluginsync which reduces the amount of work that pluginsync does by having your agent installation script download a tarball of the plugins from your master and extract it into place before installing the agent. Bulk_pluginsync can be used in the following ways: 
+
+1. PE2019.0 - enabled by default
+2. PE2018.1.5+ - Can be enabled https://puppet.com/docs/pe/2018.1/pe_enhancements.html#nix-bulk-plugin-sync-with-the-install-script-2018-1-5
+3. Prior to PE 2018.1.5, install the [bulk_pluginsync module](https://forge.puppet.com/npwalker/bulk_pluginsync) 
 
 ### Discouraged Options
 
