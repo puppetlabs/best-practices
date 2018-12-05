@@ -1,12 +1,12 @@
-# Puppet Enterprise Metrics Collection
+# Puppet Metrics Collection
 
 ## Summary
 
-To ensure the information needed to troubleshoot performance issues is available when needed, it is recommended that Puppet Enterprise users set up a metrics gathering tool.  This standard defines how to gather, retain, and graph metrics for Puppet Enterprise components in a format that is easily shareable with Puppet Support.  
+To ensure the information needed to troubleshoot performance issues is available when needed, it is recommended that Puppet users set up a metrics gathering tool.  This standard defines how to gather, retain, and graph metrics for Puppet components in a format that is easily shareable with Puppet Support.  
 
 ## Expectations
 
-This is a standard that applies to all Puppet Enterprise customers.  
+This is a standard that applies to all Puppet customers.  
 
 This standard assumes no existing performance monitoring infrastructure and the modules will configure influxdb and grafana for the user.  If there is desire to use existing tools for storing and graphing metrics then that will be left to the user to deduce from our examples.  
 
