@@ -191,9 +191,9 @@ variable type where possible, such as:
 ```puppet
 # ntp/manifests/init.pp
 class ntp (
-  Array[String]           $servers,
-  Boolean                 $iburst_enable,
-  Optional[Array[String]] $fudge,
+  Array[String]           $servers       = ['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org', '3.pool.ntp.org'],
+  Boolean                 $iburst_enable = false,
+  Optional[Array[String]] $fudge         = [ ],
   ...
 ) {
 
@@ -238,6 +238,13 @@ specific to an environment or installation. Including a hierarchy using only
 operating system and not site specific information allows the module to be
 reusable. Information relating to sites, environments or installations should be
 provided at the `Profile` layer.
+
+The lowest-priority default value should be provided as a parameter default
+in-class, rather than in data-in-modules common.yaml. This is to ensure that
+`puppet strings` generated documentation reveals that no default needs to be
+provided. It is an unfortunate shortcoming that the documentation will not
+clearly indicate that the default shown may be overridden by a more specific
+one from data-in-modules.
 
 #### Puppet Tasks
 
