@@ -21,7 +21,8 @@ practices for these module elements.
 
 The following are basic design best practices:
 
-* All Puppet code (i.e. \*.pp files) must be under the `manifests` directory.
+* All desired-state Puppet code (\*.pp files containing classes or defined
+  types) must be under the `manifests` directory.
 * Modules must only contain resources that are related to the issue the module
   is solving and not resources that do not immediately relate to the problem.
 E.g. a `phpmyadmin` module would not contain resources to manage the
