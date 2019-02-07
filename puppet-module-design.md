@@ -21,8 +21,8 @@ practices for these module elements.
 
 The following are basic design best practices:
 
-* All desired-state Puppet code (\*.pp files containing classes or defined
-  types) must be under the `manifests` directory.
+* All Puppet manifests (\*.pp files containing classes or defined types) must
+  be under the `manifests` directory.
 * Modules must only contain resources that are related to the issue the module
   is solving and not resources that do not immediately relate to the problem.
 E.g. a `phpmyadmin` module would not contain resources to manage the
@@ -240,12 +240,13 @@ operating system and not site specific information allows the module to be
 reusable. Information relating to sites, environments or installations should be
 provided at the `Profile` layer.
 
-The lowest-priority default value should be provided as a parameter default
+The lowest-priority default value should be defined as a parameter default
 in-class, rather than in data-in-modules common.yaml. This is to ensure that
-`puppet strings` generated documentation reveals that no default needs to be
-provided. It is an unfortunate shortcoming that the documentation will not
-clearly indicate that the default shown may be overridden by a more specific
-one from data-in-modules.
+there is clarity when reading the code or `puppet strings` generated
+documentation about which parameters are required, vs. which parameters have
+default values provided by the module. It is an unfortunate shortcoming that
+nothing will clearly indicate when default values shown may be overridden by
+more specific ones from data-in-modules.
 
 #### Puppet Tasks
 
