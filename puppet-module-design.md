@@ -21,7 +21,8 @@ practices for these module elements.
 
 The following are basic design best practices:
 
-* All Puppet code (i.e. *.pp files) must be under the `manifests` directory.
+* All Puppet manifests (\*.pp files containing classes or defined types) must
+  be under the `manifests` directory.
 * Modules must only contain resources that are related to the issue the module
   is solving and not resources that do not immediately relate to the problem.
 E.g. a `phpmyadmin` module would not contain resources to manage the
@@ -191,9 +192,9 @@ variable type where possible, such as:
 ```puppet
 # ntp/manifests/init.pp
 class ntp (
-  Array[String]           $servers,
-  Boolean                 $iburst_enable,
-  Optional[Array[String]] $fudge,
+  Array[String]           $servers       = ['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org', '3.pool.ntp.org'],
+  Boolean                 $iburst_enable = false,
+  Optional[Array[String]] $fudge         = [ ],
   ...
 ) {
 
@@ -238,6 +239,14 @@ specific to an environment or installation. Including a hierarchy using only
 operating system and not site specific information allows the module to be
 reusable. Information relating to sites, environments or installations should be
 provided at the `Profile` layer.
+
+The lowest-priority default value should be defined as a parameter default
+in-class, rather than in data-in-modules common.yaml. This is to ensure that
+there is clarity when reading the code or `puppet strings` generated
+documentation about which parameters are required, vs. which parameters have
+default values provided by the module. It is an unfortunate shortcoming that
+nothing will clearly indicate when default values shown may be overridden by
+more specific ones from data-in-modules.
 
 #### Puppet Tasks
 
