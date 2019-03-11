@@ -30,7 +30,7 @@ A typical control repository will look as follows:
 ├── README.md
 ├── manifests/
 │   └── site.pp
-└── site/
+└── site-modules/
     ├── profile/
     └── role/
 ```
@@ -44,7 +44,7 @@ sources via entries in the Puppetfile.
 
 ### environment.conf
 
-This file is required at a minimum to set a modulepath that includes both `site`
+This file is required at a minimum to set a modulepath that includes both `site-modules`
 and `modules`. This cannot be set globally, and must be configured in this file
 on a per-control-repo basis. Other settings may include the environment timeout
 for the environment.
@@ -86,19 +86,19 @@ Puppet code. This code should be limited to setting global resource defaults and
 applying fact/hiera based classification. In rare cases, top scope values may be
 declared here.
 
-### site
+### site-modules
 
-In most cases, the control repository will have a `site` directory for modules
+In most cases, the control repository will have a `site-modules` directory for modules
 developed by the control repository owner. Modules in this directory are part of
 the release cadence of the control repository itself. This directory may include
 roles, profiles, and internally developed component modules as needed (see
 below).
 
-This directory is called "site" by convention, and though no technical reason
-exists that it must be named "site," this name is preferred for consistency with
+This directory is called "site-modules" by convention, and though no technical reason
+exists that it must be named "site-modules," this name is preferred for consistency with
 other literature.
 
-### site/role and site/profile
+### site-modules/role and site-modules/profile
 
 In the majority of cases, these modules will be included in the control
 repository. In some cases, it may be valid to include these as external modules
@@ -118,7 +118,7 @@ repository, any changes during development necessitate at least two commits
 before the module can be tested: first, a commit to the separate module
 repository, and second, a commit to the control repository to update the
 Puppetfile. This workflow can easily be seen as onerous to new users, and
-therefore it is ideal at small shops to place new modules in the `site`
+therefore it is ideal at small shops to place new modules in the `site-modules`
 directory.
 
 If a module is developed by a team working independently from the team that owns
@@ -129,10 +129,10 @@ Puppet Forge), the module should be kept separate from the control repository to
 enable releases without copy/paste.
 
 There is no formal standard or best practice insisting that component modules
-are or are not included in the `site` directory. The decision should be made
+are or are not included in the `site-modules` directory. The decision should be made
 with the organization implementing Puppet code based on what is easiest and most
 convenient for them. Further, it is perfectly acceptable to have a mix of
-internally developed modules both in the `site` directory and referenced in the
+internally developed modules both in the `site-modules` directory and referenced in the
 Puppetfile.
 
 A common implementation pattern is to start module development directly in the
