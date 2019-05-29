@@ -77,8 +77,7 @@ difficult.
 
 ### Discouraged Options
 
-#### Classification - Multiple Profiles per Node Group when used with “have it
-your way” provisioning systems
+#### Classification - Multiple Profiles per Node Group when used with "have it your way" provisioning systems
 
 In very rare situations an installation may have a provisioning system where the
 users are able to compose the configuration of a node by picking which profiles
