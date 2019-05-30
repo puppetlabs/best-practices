@@ -11,7 +11,7 @@ including explanations for why it may be helpful to include specific files in
 the repository, or separate them into external repositories referenced by a
 Puppetfile.
 
-This document is not intedended to supercede the recommended default control
+This document is not intended to supercede the recommended default control
 repository found [here](https://github.com/puppetlabs/control-repo).
 
 This document assumes at least an intermediate level knowledge of the use of
