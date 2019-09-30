@@ -87,7 +87,7 @@ The `lib` directory contains plug-ins, such as custom facts, functions, types
 and providers. The contents of this directory are synced to all nodes.
 
 The `manifests` directory must contain all the Puppet manifests and can contain
-further directories describing implmentations, such as `client` or `server`.
+further directories describing implementations, such as `client` or `server`.
 
 The `metadata.yaml` file contains metadata relating to the module.
 
@@ -117,7 +117,7 @@ resources for that module.
 
 When creating basic modules the entry point should be the class named after the
 module (i.e. the `init.pp` file). This file can contain all the resources
-required to implment the solution that the modules addresses.
+required to implement the solution that the modules addresses.
 
 The main class of a module is its interface point and should be the only
 parameterised class if possible, this allows the module author to control the
