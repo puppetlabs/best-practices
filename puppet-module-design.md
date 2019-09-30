@@ -117,7 +117,7 @@ resources for that module.
 
 When creating basic modules the entry point should be the class named after the
 module (i.e. the `init.pp` file). This file can contain all the resources
-required to implment the solution that the modules addresses.
+required to implement the solution that the modules addresses.
 
 The main class of a module is its interface point and should be the only
 parameterised class if possible, this allows the module author to control the
