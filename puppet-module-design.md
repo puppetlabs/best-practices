@@ -87,7 +87,7 @@ The `lib` directory contains plug-ins, such as custom facts, functions, types
 and providers. The contents of this directory are synced to all nodes.
 
 The `manifests` directory must contain all the Puppet manifests and can contain
-further directories describing implmentations, such as `client` or `server`.
+further directories describing implementations, such as `client` or `server`.
 
 The `metadata.yaml` file contains metadata relating to the module.
 
