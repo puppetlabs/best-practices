@@ -34,6 +34,9 @@ Let's assume that we are beginning from a state where we have three branches wit
 | staging | `f0f25e0` | 2nd |
 | development | `593a1e3` | 1st |
 
+![Merge-Back](images/data/before_mergeback.png)
+
+
 In order to ensure that we can have CD4PE deploy new bookkeeping branches with the same revisions as the existing branches (and therefore not cause any unnecessary changes) we need to create a `master` branch which contains all of the commits in the repository.
 
 ### Perform the Merge-Back
@@ -44,7 +47,7 @@ Before creating the `master` branch, perform a merge-back. To do this we need to
 * Review the changes and merge the PR
 * Create a pull request from `staging` to `development`
 
-In each PR the only changes that should appear in the diff are ones that were not present in the environment above but **not** in the environment below. As long is the logical order was followed, this should never happen. There will however likely be a large number of merge commits. If there are changes, these should be reviewed and merged.
+In each PR the only changes that should appear in the diff are ones that were not present in the environment above but **not** in the environment below. As long is the logical order was followed, this should never happen. There will however likely be a large number of merge commits. If there are changes, these should be reviewed, merged and deployed using the existing process.
 
 Once all branches have been merged back to the 1st branch (`development`), take a note of the new refs:
 
@@ -54,32 +57,70 @@ Once all branches have been merged back to the 1st branch (`development`), take 
 | staging | `5380862` | 2nd |
 | development | `52c74cb` | 1st |
 
+![Merge-Back](images/data/after_mergeback.png)
+
 ### Create the `master` branch
 
 Once the merge-back is complete, create a branch named `master` from the 1st logical branch (`development`). This should contain all of the commits that the current long-lived branches are using. This can be checked using the following command which will return the name of the master branch if it contains the commit.
 
 ```shell
-$ git branch --contains e0aaea8
+$ git branch --contains 52c74cb
   development
 * master
 ```
 
+![Merge-Back](images/data/master_created.png)
+
 ### Create the bookkeeping branches
 
-Now we are ready to create the bookkeeping branches for CD4PE. Create new branches from the old ones, this essentially duplicates the existing branches. Remember to deploy these branches to the Puppet master.
+Now we are ready to create the bookkeeping branches for CD4PE. These are used like moveable tags and are completely controlled by CD4PE once we've started using it, we won't need to mess with them again. Create new branches from the old ones, this essentially duplicates the existing branches. Remember to deploy these branches to the Puppet master.
 
 ```shell
 git checkout -b cd4pe_production production
+git push origin cd4pe_production
 git checkout -b cd4pe_staging staging
+git push origin cd4pe_staging
 git checkout -b cd4pe_development development
+git push origin cd4pe_development
 ```
 
 ### Creating Node Groups
 
-Now that the bookkeeping branches have been created, we either need to create new node groups or use existing ones. It should be possible to move nodes from their previous branches to the new ones since there should be no changes, this can be confirmed using:
+When you deploy in CD4PE you are deploying to a node group. CD4PE does this by taking the branch (environment) that the node group is assigning nodes to, and updating the `HEAD` of that branch to be some new commit. Users much have some method of assigning nodes to environment at the moment, likely it is one of the following ways:
+
+#### Agent-Specified
+
+If agents contain their environment as a setting in `puppet.conf`, and this is not overridden by the master, then new node groups will need to be created to that it *is* overridden by the master using an [environment group](https://puppet.com/docs/pe/2018.1/grouping_and_classifying_nodes.html#create_environment_node_groups). The environment assigned should be the new one we just created i.e. nodes that were previously pointed at the `development` environment should point at the `cd4pe_development` environment.
+
+This change should cause no changes due to the git operations we have been following, however this can be verified by running:
 
 ```shell
 git diff cd4pe_production production
 ```
 
-Once all nodes are running against `cd4pe_` branches we can create a CD4PE pipeline and we are done! Since the merge-back the master branch is a linear history of commits, further changes should be merged into this branch from feature branches. The CD4PE pipeline will then move the head of the bookkeeping branches forward along the master branch, as it is designed to.
+#### Environment Groups
+
+If the user is already using environment groups, then the environment can simply be switched from the existing environment, to the new `cd4pe_` equivalent i.e. `development` would become `cd4pe_development`.
+
+This change should cause no changes due to the git operations we have been following, however this can be verified by running:
+
+```shell
+git diff cd4pe_production production
+```
+
+### Finishing Up
+
+Once all nodes are running against `cd4pe_` branches we can create a CD4PE pipeline and we are done! Since the merge-back the `master` branch is a linear history of commits, further changes should be merged into the `master` branch from feature branches. The CD4PE pipeline will then move the head of the bookkeeping branches forward along the master branch, as it is designed to. The old branches (`development`, `staging` and `production`) can now be deleted.
+
+## Things to Look Out For
+
+### Usage of `%{environment}` in hiera
+
+Since moving to CD4PE recommends that nodes change their environment, this can cause issues if the hiera hierarchy includes that node's environment. There are two ways to get around this:
+
+* Replace all instances of the old environment names with the new environment names, but only in the new branches
+* Simply do not rename the branches from `environment` to `cd4pe_environment`. CD4PE doesn't require that this change be made, but it does allow for differentiation between the book-keeping branches and those that are designed to be used by humans
+
+### Half-Merged Changes
+
+It is recommended that impact analysis is always used in a pipeline before triggering a deployment. If there were changes in flux at the time of cutover that had not yet reached the `production` branch (but had reach other branches such as `staging`) they will be deployed if fresh commits to the `master` branch are pushed through the pipeline since not all environments are at the same revision. CD4PE does not have the ability for changes to "overtake" each other in the pipeline as was possible with the previous workflow. It is best to think of the pipeline as fully loaded with changes and attempting to push a single change all the way though will also flush out any other changes that had been sitting in there. Impact analysis when used correctly will detect these and allow for informed decisions at the time of deployment.
