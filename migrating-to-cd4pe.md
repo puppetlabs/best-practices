@@ -86,7 +86,7 @@ git push origin cd4pe_development
 
 ### Creating Node Groups
 
-When you deploy in CD4PE you are deploying to a node group. CD4PE does this by taking the branch (environment) that the node group is assigning nodes to, and updating the `HEAD` of that branch to be some new commit. Users much have some method of assigning nodes to environment at the moment, likely it is one of the following ways:
+When you deploy in CD4PE you are deploying to a node group. CD4PE does this by taking the branch (environment) that the node group is assigning nodes to, and updating the `HEAD` of that branch to be some new commit. Users must have some method of assigning nodes to environment at the moment, likely it is one of the following ways:
 
 #### Agent-Specified
 
