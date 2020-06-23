@@ -90,7 +90,7 @@ When you deploy in CD4PE you are deploying to a node group. CD4PE does this by t
 
 #### Agent-Specified
 
-If agents contain their environment as a setting in `puppet.conf`, and this is not overridden by the master, then new node groups will need to be created to that it *is* overridden by the master using an [environment group](https://puppet.com/docs/pe/2018.1/grouping_and_classifying_nodes.html#create_environment_node_groups). The environment assigned should be the new one we just created i.e. nodes that were previously pointed at the `development` environment should point at the `cd4pe_development` environment.
+If agents contain their environment as a setting in `puppet.conf`, and this is not overridden by the master, then new node groups will need to be created so that it *is* overridden by the master using an [environment group](https://puppet.com/docs/pe/2018.1/grouping_and_classifying_nodes.html#create_environment_node_groups). The environment assigned should be the new one we just created i.e. nodes that were previously pointed at the `development` environment should point at the `cd4pe_development` environment.
 
 This change should cause no changes due to the git operations we have been following, however this can be verified by running:
 
