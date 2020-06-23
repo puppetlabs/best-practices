@@ -114,9 +114,9 @@ Once all nodes are running against `cd4pe_` branches we can create a CD4PE pipel
 
 ## Things to Look Out For
 
-### Usage of `%{environment}` in hiera
+### Usage of `%{environment}` in Hiera
 
-Since moving to CD4PE recommends that nodes change their environment, this can cause issues if the hiera hierarchy includes that node's environment. There are two ways to get around this:
+Since moving to CD4PE recommends that nodes change their environment, this can cause issues if the Hiera hierarchy includes that node's environment. There are two ways to get around this:
 
 * Replace all instances of the old environment names with the new environment names, but only in the new branches
 * Simply do not rename the branches from `environment` to `cd4pe_environment`. CD4PE doesn't require that this change be made, but it does allow for differentiation between the book-keeping branches and those that are designed to be used by humans
