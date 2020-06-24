@@ -18,8 +18,8 @@ best practice.
 # Expectations
 
 All new customers working with someone in CS should be directed to follow this
-best practice if, and only if, there is an identified need for decoupling as
-described above.
+best practice **if, and only if,** there is an identified need for decoupling
+as described above.
 
 This best practice may also be applied to existing users if a need is
 identified. However application of this best practice to an existing user may
@@ -29,7 +29,9 @@ user's workflow(s) should be explored and considered.
 
 # Best Practice Details
 
-## Users on Puppet Enterprise 2016.4 and later
+## Preferred Option
+
+### `mod` entry + `install_path` (Puppet Enterprise 2016.4 and later)
 
 The `Puppetfile` should contain a `mod` entry for the `hieradata` repository.
 This entry will appear the same as a Puppet module entry, but will install the
@@ -67,7 +69,7 @@ this is not recommended unless strictly required.
   :datadir:
 ```
 
-## Users on older versions of Puppet Enterprise
+### `mod` entry + hiera.yaml datadir (Puppet Enterprise older than 2016.4)
 
 The `Puppetfile` should contain a `mod` entry for the `hieradata` repository.
 This entry will resemble that of any Puppet module, and the `hieradata`
@@ -101,7 +103,7 @@ your `hiera.yaml` to reflect this:
   :datadir: /etc/puppetlabs/code/environments/%{environment}/modules/hieradata
 ```
 
-## Deployment Considerations
+### Deployment Considerations
 
 Choosing to manage your data in the manner described in this best practice will
 require additional attention be paid to the process of deploying changes. Prior
@@ -126,25 +128,30 @@ updated.
 
 ## Discouraged Options
 
-### Gary Larizza Blog method In the past, managing hieradata as a separate
-"source" in `r10k` has been recommended.  Many users are using instructions from
-Gary Larizza's (now dated) Puppet Workflow blog to implement this method.
+### Hieradata as a separate "source" in `r10k` (Gary Larizza Blog method)
+
+In the past, managing hieradata as a separate "source" in `r10k` has been
+recommended.  Many users are using instructions from Gary Larizza's (now dated)
+Puppet Workflow blog to implement this method:
 
 * http://garylarizza.com/blog/2014/03/07/puppet-workflow-part-3b/
 
-This approach is now discouraged, and is considered more complicated and fragile
-than required.  Adding an entry for `hieradata` into the `Puppetfile` is more
-reliable, easier to implement, and allows the `Puppetfile` be the canonical
-description of the environment.
+**This approach is now discouraged,** and is considered more complicated and
+fragile than required.  Adding an entry for `hieradata` into the `Puppetfile`
+is more reliable, easier to implement, and allows the `Puppetfile` be the
+canonical description of the environment.
 
-### `moduledir` method In R10k 1.4.0, it became possible to use the `moduledir`
-directive to direct R10k module entries to install modules in a non-standard
-relative path. The `moduledir` directive should be placed before before all `mod`
-entries in a `Puppetfile` to redirect the installation location. Though it is
-not documented, the `moduledir` directive can currently be used to "reset" the
-path `mod` entries install into at any point in a `Puppetfile`. In the past this
-has been used to achieve a similar effect as the `install_path` argument on the
-`mod` entry as detailed in this best practice.
+### Extra `moduledir` entries in the Puppetfile (`moduledir` method)
+
+In r10k 1.4.0, it became possible to use the `moduledir` directive to direct 
+r10k module entries to install modules in a non-standard relative path. 
+
+Normally, the `moduledir` directive is placed before before all `mod` entries in
+a `Puppetfile` to redirect the installation location. However, the `moduledir`
+directive can currently also be used to "reset" the path `mod` entries install
+into at any point in a `Puppetfile`.  This technique has been used in the past
+to achieve a similar effect as the `install_path` argument on the `mod`
+entry as detailed in this best practice.
 
 ```ruby
 mod 'trlinkin/nsswitch'
