@@ -33,7 +33,7 @@ may be necessary. The purpose of the Role remains important however the naming
 of each Role may need to change to accommodate for multiple tenancy.
 
 
-## Best Practise Details
+## Best Practice Details
 
 ### Preferred Option
 
