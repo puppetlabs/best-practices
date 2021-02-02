@@ -22,7 +22,7 @@ Node Classifier.
 
 All Puppet users using the Node Classifier and using rules should use variables
 from the trusted facts array (`$trusted`). These facts are included in the
-node's certificate or generated on the master and, as such, cannot be changed on
+node's certificate or generated on the Puppet Server and, as such, cannot be changed on
 the node.
 
 Inserting information into the node's certificate is done at agent installation

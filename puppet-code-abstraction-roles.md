@@ -81,7 +81,7 @@ of each Role may need to change to accommodate for multiple tenancy.
   implemented.
 
 * Roles can be broken out into individual modules to accommodate multiple
-  tenancy on a Puppet Master, however uniqueness must be maintained (i.e. there
+  tenancy on a Puppet Server, however uniqueness must be maintained (i.e. there
   can only be one `role` module per Puppet Environment). A prefix shall be
   used (e.g. `role_application_server`) to designate that a
   module is NOT a component module but is, instead, a Role. This should only

@@ -6,13 +6,13 @@ Puppet Enterprise is composed of multiple services, each with their own default 
 
 ## Expectations
 
-Given the above, it's necessary to tune the settings of Puppet Enterprise services to maximize the use of available hardware resources after installation, and to reallocate resources after changing your infrastructure: for example: after adding compile masters or replica masters. It is also necessary to tune the settings in response to changes in the size and/or complexity of your infrastructure.
+Given the above, it's necessary to tune the settings of Puppet Enterprise services to maximize the use of available hardware resources after installation, and to reallocate resources after changing your infrastructure: for example: after adding compilers or replica Puppet Servers. It is also necessary to tune the settings in response to changes in the size and/or complexity of your infrastructure.
 
 ## Standard Details
 
 Tuning Puppet Enterprise requires reviewing the documentation for each service, identifying the resources of each infrastructure host, and performing manual calculations for each infrastructure host and service.
 
-The following documents tuning monolithic installations based on three standard sizes (4 CPU/8GB RAM, 8 CPU/16GB RAM, and 16 CPU/32GB RAM) of primary master hardware, with variations when using compile masters:
+The following documents tuning monolithic installations based on three standard sizes (4 CPU/8GB RAM, 8 CPU/16GB RAM, and 16 CPU/32GB RAM) of primary Puppet Server hardware, with variations when using compilers:
 
   * https://puppet.com/docs/pe/latest/configuring/tuning_monolithic.html
 
@@ -21,7 +21,7 @@ That public documentation was informed by the following internal documents:
   * [Document with some background](https://docs.google.com/document/d/1o3I5jSaonSj0-xCF7B9YNfUN_DhkeO-F-mBJeFnXPiw/edit)
   * [Spreadsheet with calculations](https://docs.google.com/spreadsheets/d/15FzysLcGkG8cEFFVuxE6nyca7x4YxQcn38wFWLXNVgk/edit)
 
-> Note how the tuning monolithic guidelines differ from the defaults, and note how resources allocated for the Puppet Server and PuppetDB services on the primary master are reallocated when using compile masters.
+> Note how the tuning monolithic guidelines differ from the defaults, and note how resources allocated for the Puppet Server and PuppetDB services on the primary Puppet Server are reallocated when using compilers.
 
 The following documents tuning each service:
 
@@ -41,7 +41,7 @@ This tooling is available via the `puppet infrastructure tune` command in Puppet
 
 https://github.com/tkishel/pe_tune
 
-This tooling reads `pe.conf` on the Primary Master, queries PuppetDB for node group membership to identify PE Infrastructure hosts, queries PuppetDB for processor and memory facts for each PE Infrastructure host, and outputs optimized settings for each service, in YAML format for use in Hiera. With a monolithic infrastructure, the output could be saved to a common/default YAML file. With a split infrastructure, the output would be saved to node-specific YAML files included in a node-specific hierarchy.
+This tooling reads `pe.conf` on the Primary Puppet Server, queries PuppetDB for node group membership to identify PE Infrastructure hosts, queries PuppetDB for processor and memory facts for each PE Infrastructure host, and outputs optimized settings for each service, in YAML format for use in Hiera. With a monolithic infrastructure, the output could be saved to a common/default YAML file. With a split infrastructure, the output would be saved to node-specific YAML files included in a node-specific hierarchy.
 
 This tooling includes an option to output currently defined settings, in JSON format. Those settings may have been defined either in the Classifier (the Console) or in Hiera, with Classifier settings taking precedence over Hiera settings. Best practice is to define settings in Hiera (preferred) or the Classifier, but not both. The output of this option also identifies duplicate settings found in both the Classifier and Hiera as a diagnostic.
 
@@ -69,7 +69,7 @@ This document addresses tuning services.
 
 The following addresses distributing agent load:
 
-https://puppet.com/docs/pe/latest/installing_compile_masters.html#using-load-balancers-with-compile-masters
+https://puppet.com/docs/pe/latest/installing_compilers.html#using-load-balancers-with-compilers
 https://support.puppet.com/hc/en-us/articles/115004312247
 
 The following addresses determining if you need to add resources:
