@@ -6,7 +6,7 @@ Reasons to set settings in user hiera data:
  - Can be easily managed via a control-repo / hiera data repo 
 
 Reasons not to set settings in `pe.conf` include:
- - Not all PE admins have root access on the Master to edit `pe.conf`
+ - Not all PE admins have root access on the Puppet Server to edit `pe.conf`
  - Admins prefer to save settings in the Console UI for visibility
  - User hiera hierarchies provide appropriate levels for configuring parts of PE that are not afforded by the internal PE hiera configuration  
  - Settings in `pe.conf` can be overridden by user configuration data

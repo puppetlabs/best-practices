@@ -5,7 +5,7 @@
 Puppet users requiring code consistency use a tool like Puppet Enterprise's Code
 Manager or R10k to ensure that the required Puppet environments containing all
 necessary modules (at their requested versions) are present on all of their
-Puppet masters. The decision of where to store Puppet modules (whether in the
+Puppet Servers. The decision of where to store Puppet modules (whether in the
 control repo or in their own version control repositories) quickly arises for
 both tools. This document defines the best practice that can be referenced to
 assist in making that decision.

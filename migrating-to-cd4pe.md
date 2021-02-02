@@ -2,7 +2,7 @@
 
 ## Summary
 
-This document outlines best practices for converting existing Git workflows to being CD4PE compatible. Since standard CD4PE workflows require that users have a `master` branch which contains a linear series of commits, some multi-branch workflows can be difficult reconcile to this way of working due to the fact that a single branch (`master`) needs to contain all commits in the repo in order for them to be deployable.
+This document outlines best practices for converting existing Git workflows to being CD4PE compatible. Since standard CD4PE workflows require that users have a `main` branch which contains a linear series of commits, some multi-branch workflows can be difficult reconcile to this way of working due to the fact that a single branch (`main`) needs to contain all commits in the repo in order for them to be deployable.
 
 This document does not recommend what specific workflow should be used once CD4PE is in place, just how to get CD4PE implemented without causing changes in your environment.
 
@@ -37,11 +37,11 @@ Let's assume that we are beginning from a state where we have three branches wit
 ![Merge-Back](images/data/before_mergeback.png)
 
 
-In order to ensure that we can have CD4PE deploy new bookkeeping branches with the same revisions as the existing branches (and therefore not cause any unnecessary changes) we need to create a `master` branch which contains all of the commits in the repository.
+In order to ensure that we can have CD4PE deploy new bookkeeping branches with the same revisions as the existing branches (and therefore not cause any unnecessary changes) we need to create a `main` branch which contains all of the commits in the repository.
 
 ### Perform the Merge-Back
 
-Before creating the `master` branch, perform a merge-back. To do this we need to merge the long lived branches back onto each other in reverse order. In the above environment this would mean:
+Before creating the `main` branch, perform a merge-back. To do this we need to merge the long lived branches back onto each other in reverse order. In the above environment this would mean:
 
 * Create a pull request from `production` to `staging`
 * Review the changes and merge the PR
@@ -59,21 +59,21 @@ Once all branches have been merged back to the 1st branch (`development`), take 
 
 ![Merge-Back](images/data/after_mergeback.png)
 
-### Create the `master` branch
+### Create the `main` branch
 
-Once the merge-back is complete, create a branch named `master` from the 1st logical branch (`development`). This should contain all of the commits that the current long-lived branches are using. This can be checked using the following command which will return the name of the master branch if it contains the commit.
+Once the merge-back is complete, create a branch named `main` from the 1st logical branch (`development`). This should contain all of the commits that the current long-lived branches are using. This can be checked using the following command which will return the name of the main branch if it contains the commit.
 
 ```shell
 $ git branch --contains 52c74cb
   development
-* master
+* main
 ```
 
-![Merge-Back](images/data/master_created.png)
+![Merge-Back](images/data/main_created.png)
 
 ### Create the bookkeeping branches
 
-Now we are ready to create the bookkeeping branches for CD4PE. These are used like moveable tags and are completely controlled by CD4PE once we've started using it, we won't need to mess with them again. Create new branches from the old ones, this essentially duplicates the existing branches. Remember to deploy these branches to the Puppet master.
+Now we are ready to create the bookkeeping branches for CD4PE. These are used like moveable tags and are completely controlled by CD4PE once we've started using it, we won't need to mess with them again. Create new branches from the old ones, this essentially duplicates the existing branches. Remember to deploy these branches to the Puppet Server.
 
 ```shell
 git checkout -b cd4pe_production production
@@ -90,7 +90,7 @@ When you deploy in CD4PE you are deploying to a node group. CD4PE does this by t
 
 #### Agent-Specified
 
-If agents contain their environment as a setting in `puppet.conf`, and this is not overridden by the master, then new node groups will need to be created so that it *is* overridden by the master using an [environment group](https://puppet.com/docs/pe/2018.1/grouping_and_classifying_nodes.html#create_environment_node_groups). The environment assigned should be the new one we just created i.e. nodes that were previously pointed at the `development` environment should point at the `cd4pe_development` environment.
+If agents contain their environment as a setting in `puppet.conf`, and this is not overridden by the Puppet Server, then new node groups will need to be created so that it *is* overridden by the Puppet Server using an [environment group](https://puppet.com/docs/pe/2018.1/grouping_and_classifying_nodes.html#create_environment_node_groups). The environment assigned should be the new one we just created i.e. nodes that were previously pointed at the `development` environment should point at the `cd4pe_development` environment.
 
 This change should cause no changes due to the git operations we have been following, however this can be verified by running:
 
@@ -110,7 +110,7 @@ git diff cd4pe_production production
 
 ### Finishing Up
 
-Once all nodes are running against `cd4pe_` branches we can create a CD4PE pipeline and we are done! Since the merge-back the `master` branch is a linear history of commits, further changes should be merged into the `master` branch from feature branches. The CD4PE pipeline will then move the head of the bookkeeping branches forward along the master branch, as it is designed to. The old branches (`development`, `staging` and `production`) can now be deleted.
+Once all nodes are running against `cd4pe_` branches we can create a CD4PE pipeline and we are done! Since the merge-back the `main` branch is a linear history of commits, further changes should be merged into the `main` branch from feature branches. The CD4PE pipeline will then move the head of the bookkeeping branches forward along the main branch, as it is designed to. The old branches (`development`, `staging` and `production`) can now be deleted.
 
 ## Things to Look Out For
 
@@ -123,4 +123,4 @@ Since moving to CD4PE recommends that nodes change their environment, this can c
 
 ### Half-Merged Changes
 
-It is recommended that impact analysis is always used in a pipeline before triggering a deployment. If there were changes in flux at the time of cutover that had not yet reached the `production` branch (but had reached other branches such as `staging`) they will be deployed if fresh commits to the `master` branch are pushed through the pipeline since not all environments are at the same revision. CD4PE does not have the ability for changes to "overtake" each other in the pipeline as was possible with the previous workflow. It is best to think of the pipeline as fully loaded with changes and attempting to push a single change all the way though will also flush out any other changes that had been sitting in there. Impact analysis when used correctly will detect these and allow for informed decisions at the time of deployment.
+It is recommended that impact analysis is always used in a pipeline before triggering a deployment. If there were changes in flux at the time of cutover that had not yet reached the `production` branch (but had reached other branches such as `staging`) they will be deployed if fresh commits to the `main` branch are pushed through the pipeline since not all environments are at the same revision. CD4PE does not have the ability for changes to "overtake" each other in the pipeline as was possible with the previous workflow. It is best to think of the pipeline as fully loaded with changes and attempting to push a single change all the way though will also flush out any other changes that had been sitting in there. Impact analysis when used correctly will detect these and allow for informed decisions at the time of deployment.

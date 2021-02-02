@@ -21,7 +21,7 @@ informed of the problem and guided towards using a custom fact.
 
 In Puppet today, an environment is:
 
-* A directory on the master containing Puppet code
+* A directory on the Puppet Server containing Puppet code
 * The value of `%{environment}`
 
 To most users, an environment is:
@@ -108,7 +108,7 @@ ntp::server: 10.10.29.29
 
 Now we'd like to make a code change and we create a feature branch of our
 control-repo to test the change.  We make a feature branch called my_feat_branch
-and it gets deployed on the master as a Puppet environment of the same name.
+and it gets deployed on the Puppet Server as a Puppet environment of the same name.
 
 When we go to test the change we get an unexpected result in that our ntp
 servers in ntp.conf are set to the defaults of the module instead of what we

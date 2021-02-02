@@ -30,7 +30,7 @@ Control around who is and is not allowed to generate autosigning tokens can be c
 
 **Generating Tokens:**
 
-Tokens should be generated using the `autosign::generate_token` task. This task requires that a certname or regular expression be provided, and be to run against the Puppet Master. The output of the task will be [JSON Web Token](https://jwt.io/) which the `autosign` gem on the Puppet master will recognise. The token will only be valid if it is used against a CSR with the name provided. The [Puppet Orchestration API](https://puppet.com/docs/pe/2017.3/orchestrator/orchestrator_api_commands_endpoint.html#post-command-task) can also be used to obtain tokens if this process needs to be automated or scripted.
+Tokens should be generated using the `autosign::generate_token` task. This task requires that a certname or regular expression be provided, and be to run against the Puppet Server. The output of the task will be [JSON Web Token](https://jwt.io/) which the `autosign` gem on the Puppet Server will recognise. The token will only be valid if it is used against a CSR with the name provided. The [Puppet Orchestration API](https://puppet.com/docs/pe/2017.3/orchestrator/orchestrator_api_commands_endpoint.html#post-command-task) can also be used to obtain tokens if this process needs to be automated or scripted.
 
 Once tokens have been generated using the task, they should be inserted as the `challengePassword` attribute and will therefore be signed using the the autosign validator.
 
@@ -40,7 +40,7 @@ Once tokens have been generated using the task, they should be inserted as the `
 
 If customers have requirements that are not addressed by the Preferred Option, it is recommended that they consider writing a custom autosign validator. Autosign tokens are simply [JSON Web Tokens](https://jwt.io/) meaning that they can be embedded with any arbitrary data, as long as they use the HS256 algorithm and are signed with the correct secret. Custom autosign validators could validate any arbitrary data that is embedded within the token without the need for writing too much custom code, and would not break the existing functionality.
 
-**Use a multiplexer for compile master autosigning**
+**Use a multiplexer for compiler autosigning**
 
 As a workaround to [SERVER-1005](https://tickets.puppetlabs.com/browse/SERVER-1005), a multiplexer configuration may be used to  autosign certificates with dns-alt-name or authorization extensions. (for the workaround, a multiplexer script must shell out to `puppet cert sign --allow-dns-alt-names --allow-authorization-extensions` to sign the certificate out-of-band).
 
@@ -48,7 +48,7 @@ There is not currently a standard multiplexer script for this purpose.
 
 The multiplexer script should return false for normal agent certificate requests.
 
-This alternative should only be implemented when automation is needed for spinning up compile masters.
+This alternative should only be implemented when automation is needed for spinning up compilers.
 
 ### Discouraged Options
 
