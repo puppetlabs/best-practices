@@ -24,16 +24,34 @@ Additionally, when a Puppet master is not used every agent must be given full ac
 
 Finally, beyond Puppet configuration management through manifests, when not using a Puppet master all other Puppet-provided services are effectively unavailable. This includes but is not limited to orchestration, tasks, and reporting.
 
-Masterless is not one of the approved Puppet architectures, which limits the amount of available information there is on how to implement it.
+Serverless is not one of the approved Puppet architectures, which limits the amount of available information there is on how to implement it.
 
 ### Situations where users might use Puppet without a master
 
-First boot configuration management is desired and Puppet is uninstalled immediately after the first run. This is sometimes seen in high performance computing environments where nodes are immutable and CPU utilization of an agent is seen as a problem.
+Desired state is used for provisioning, but not afterwards. (e.g. "Here's a node that we know is good. What you do with it from now on is your business; don't call us if it breaks.")
 
-High performance compute environments might also reboot/reconfigure an entire cluster at once in preparation for the next batch job which could present a thundering herd problem.
+#### HPC/Supercomputing
+
+Some high performance computing environments have traditionally gravitated towards a serverlessless model, for instance when:
+* nodes are immutable, and so Puppet is just confirming that desired state is enforced (e.g. services are running, tempfs isn't full, etc.) and configuration is handeled in some other way (e.g. an exported, read-only root file system) 
+* CPU resources are at a premium, and the cost of running **any** non-essential load is too high
+* Managed system count is large enough that a non-trivial puppet configuration with compile servers might be desired
+
+High performance compute environments might also reboot/reconfigure an entire cluster at once in preparation for the next batch job which could present a thundering herd problem. (Puppet 4.0/Puppet Server 2.0 and newer have several features that mitigate thundering herds; Puppet 5 onwards even more so.)
+
+HPC Systems are typically associated with (and dependant on) one or more low-latency, high-performance file systems, allowing all nodes to easily access Puppet code from a single (read-only) location. This source of truth reduces code distribution overhead associated with other use cases (e.g. shared nothing). Use of version control remains strongly encouraged; editing a file on the shared file system may seem quick and easy, knowing that all nodes will see the change immediately, but this approach brings several hazards and risks. The same file system can also be a destination for puppet run output, logs etc. This may simplify troubleshooting versus other use cases.
+
+Some HPC sites use 'puppet apply' as part of their node health checks, to ensure each node is:
+* in its desired state, healthy and otherwise ready to process the next job
+* running the latest configuration
+* configured consistently with its peers participating in the job
+
+While this approach can have several benefits, it can also add significant complexity as node configuration is (typically) only updated at the start of a new job. (The nodes with the longest running jobs have the oldest configuration, and the ones with the just-started jobs have the newest, and every other node is some version in between.) This may make it more difficult to know when a specific configuration change is rolled out across **all** nodes in the entire cluster.
+
+Please note that most of these concerns can be addressed simply and easily with Puppet 4.4 and newer features such as [static catalogs](https://puppet.com/docs/pe/2021.2/static_catalogs.html) and [direct change](https://puppet.com/docs/pe/2019.0/direct_puppet_a_workflow_for_controlling_change.html)-based workflow. An approach based on these features can strike a balance between having no desired state enforcement while jobs are running (e.g. jobs failing because a limited resource is depleted slowly during the run, which Puppet could identify and fix) while not requiring a significant Puppet infrastructure to maintain, even in the case of a thundering herd.
 
 ## Other Information
 
-https://puppet.com/docs/pe/2018.1/overview/pe_architecture_overview.html
+https://puppet.com/docs/pe/2021.4/pe_architecture_overview.html
 
-https://puppet.com/docs/puppet/5.5/architecture.html
+https://puppet.com/docs/puppet/7/architecture.html
