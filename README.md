@@ -1,3 +1,9 @@
+# ⚠️ WARNING ⚠️
+
+This repository is no longer mantained since ~ 2019. While some of these documentation might still be useful, much of it is obsolete or out of date.
+
+For a maintained collection of similar information, please see [Patterns and Tactics](https://puppet.com/docs/patterns-and-tactics).
+
 # Customer Success Best Practices Repository
 
 Customers, partners, and Puppet employees have long sought standards for the implementation and configuration of Puppet's products and related software. These best practices are not official technical documentation, but rather a distillation of the collective experience of our team and community. This repository was created to give Customer Success a place to compile these practices using a standard process to propose, define, review, and revise them.
