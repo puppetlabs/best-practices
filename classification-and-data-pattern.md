@@ -2,7 +2,7 @@
 
 This repository is no longer mantained since ~ 2019. While some of these documentation might still be useful, much of it is obsolete or out of date.
 
-For a maintained collection of similar information, please see [Patterns and Tactics](https://puppet.com/docs/patterns-and-tactics).
+For a maintained collection of similar information, please see [Patterns and Tactics](https://www.puppet.com/docs/patterns-and-tactics/latest/patterns-and-tactics.html).
 # Classification and Data Pattern Standards
 
 ## Summary
